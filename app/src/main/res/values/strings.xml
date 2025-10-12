@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Protx_V2</string>
+    <string name="protx_logo">Protx Logo</string>
+    <string name="produits">Produits</string>
+    <string name="assistance">Assistance</string>
+    <string name="param_tres">Paramètres</string>
+</resources>
