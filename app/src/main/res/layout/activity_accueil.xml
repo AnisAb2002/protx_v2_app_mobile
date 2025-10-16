@@ -25,29 +25,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:layout_width="130dp"
-                android:layout_height="50dp"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="0dp"
                 android:id="@+id/produitsBtn"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:text="@string/produits"/>
             <Button
-                android:layout_width="130dp"
-                android:layout_height="50dp"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="0dp"
                 android:id="@+id/assistanceBtn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/assistance"/>
             <Button
-                android:layout_width="130dp"
-                android:layout_height="50dp"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="0dp"
                 android:id="@+id/paramBtn"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/param_tres"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
