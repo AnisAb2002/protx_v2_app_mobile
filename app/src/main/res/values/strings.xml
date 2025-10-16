@@ -1,4 +1,12 @@
 <resources>
+
+    <string-array name="objectifs_array">
+        <item>Perte de poids</item>
+        <item>Prise de masse</item>
+        <item>Amélioration des performances</item>
+        <item>Maintien de la forme</item>
+    </string-array>
+
     <string name="app_name">Protx_V2</string>
     <string name="protx_logo">Protx Logo</string>
     <string name="produits">Produits</string>
@@ -8,4 +16,11 @@
     <string name="logo_de_projet_paris_8_tudiant">Logo de projet étudiant univesité paris 8</string>
     <string name="acceder">Accéder</string>
     <string name="assistan">Assistance</string>
+    <string name="bouton_retourner">Bouton retourner</string>
+    <string name="age">Âge</string>
+    <string name="taille">Taille (cm)</string>
+    <string name="poids_kg">Poids (kg)</string>
+    <string name="objectif">Objectif</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="Aide_assistance_paragraphe">Remplissez ce formulaire pour que nous puissions vous recommander le produit le mieux adapté à vos besoins.</string>
 </resources>

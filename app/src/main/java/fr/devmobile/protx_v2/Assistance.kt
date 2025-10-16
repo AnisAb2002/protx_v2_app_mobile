@@ -1,13 +1,9 @@
 package fr.devmobile.protx_v2
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import fr.devmobile.protx_v2.databinding.ActivityAssistanceBinding
-import fr.devmobile.protx_v2.databinding.ActivityMainBinding
 
 class Assistance : AppCompatActivity() {
 
@@ -22,6 +18,57 @@ class Assistance : AppCompatActivity() {
 
         binding.retourBouton.setOnClickListener {
             finish()
+        }
+
+        binding.envoyerButton.setOnClickListener {
+            chercerProduit()
+        }
+
+    }
+
+    private fun chercerProduit() {
+
+        val ageTexte = binding.ageEditText.text.toString()
+        val tailleTexte = binding.tailleEditText.text.toString()
+        val poidsTexte = binding.poidsEditText.text.toString()
+
+        if (ageTexte.isEmpty() or tailleTexte.isEmpty() or poidsTexte.isEmpty()) {
+            Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+
+            return
+        }
+        else{
+            val age = ageTexte.toFloat()
+            val taille = tailleTexte.toFloat() /100 //en m pas en cm
+            val  poids = poidsTexte.toFloat()
+            val  objectif = binding.objectifSpinner.selectedItem.toString()
+
+            val imc = poids/(taille*taille)
+
+            if(age <18){
+                //pas trop agé
+                Toast.makeText(this, "Conseil : éviter ces produits", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                if (imc<18.5){
+                    //prise de masse forcée
+                    Toast.makeText(this, "$imc produits de prise de mass", Toast.LENGTH_SHORT).show()
+                }
+                else if(imc>30){
+                    //perte de poids forcée
+                    //proteine
+                    Toast.makeText(this, "produits de perte de poids ", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    when(objectif){
+                        "Perte de poids" -> Toast.makeText(this, "Créatine", Toast.LENGTH_SHORT).show()
+                        "Prise de masse" -> Toast.makeText(this, "Proteines Whey, Gainer Mass et energisant", Toast.LENGTH_SHORT).show()
+                        "Amélioration des performances" -> Toast.makeText(this, "Energisant et créatine", Toast.LENGTH_SHORT).show()
+                        "Maintien de la forme" -> Toast.makeText(this, "Energisant et proteines ", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
 
 
