@@ -4,4 +4,7 @@
     <string name="produits">Produits</string>
     <string name="assistance">Assistance</string>
     <string name="param_tres">Paramètres</string>
+    <string name="fond_ecran">Fond décran halteres</string>
+    <string name="logo_de_projet_paris_8_tudiant">Logo de projet étudiant univesité paris 8</string>
+    <string name="acceder">Accéder</string>
 </resources>
