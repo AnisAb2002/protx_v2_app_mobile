@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Protx_V2">
         <activity
+            android:name=".Parametres"
+            android:exported="false" />
+        <activity
             android:name=".Assistance"
             android:exported="false" />
         <activity

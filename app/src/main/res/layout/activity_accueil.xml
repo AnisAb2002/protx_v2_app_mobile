@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/black">
+    android:background="@color/grey">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/grey">
+        android:id="@+id/nav">
 
         <ImageView
             android:contentDescription="@string/protx_logo"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_centerHorizontal="true"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:src="@drawable/logo"
+            android:id="@+id/protx_logo_img"
             />
         <RelativeLayout
-            android:layout_marginTop="100dp"
+            android:layout_below="@+id/protx_logo_img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/bouton_bar">
             <Button
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
@@ -60,295 +63,68 @@
                 android:text="@string/param_tres"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
+        <TextView
+            android:id="@+id/produits_desc_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bouton_bar"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/white"
+            android:text=""/>
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp">
-
-        <TableLayout
+        android:layout_below="@id/nav"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey"
-            android:paddingTop="10dp">
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:background="@drawable/rounded_bg">
 
-            <TableRow
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/produit_image"
+                android:contentDescription="@string/produit_image"
+                android:src="@drawable/solidmass1500g" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
+                android:text="Produit 1"
+                android:textColor="@color/grey" />
 
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
+                android:text="Protéines"
+                android:textColor="@color/grey" />
 
-                <LinearLayout
-                    android:layout_width="150dp"
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="150dp"
+                    android:layout_gravity="center"
+                    android:text="8$"
+                    android:textColor="@color/grey"
+                    style="@style/TextAppearance.AppCompat.Title"
+                />
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_bg">
-                    <ImageView
-                        android:contentDescription="@string/protx_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/carbo"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Produit 1"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Protéines"
-                        android:textColor="@color/grey"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="8$"
-                        android:textColor="@color/grey"
-                        style="@style/TextAppearance.AppCompat.Title"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aperçu"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/grey"/>
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
-
+                    android:text="Aperçu"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/grey"
+                />
+        </LinearLayout>
     </ScrollView>
 
 
