@@ -8,7 +8,7 @@ import androidx.room.Query
 interface Produit_dao {
 
     @Query("SELECT * FROM produits")
-    suspend fun getAll(): List<Produit>
+    suspend fun getProduits(): List<Produit>
 
     @Insert
     suspend fun insert(produit: Produit)

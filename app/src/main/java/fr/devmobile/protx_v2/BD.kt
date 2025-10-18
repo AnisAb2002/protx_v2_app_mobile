@@ -4,12 +4,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
+import fr.devmobile.protx_v2.R
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Produit::class], version = 1)
+@Database(entities = [Produit::class], version = 3)
 abstract class BD : RoomDatabase() {
     abstract fun produitDao(): Produit_dao
 
@@ -51,6 +52,7 @@ private class DatabaseCallback(
 
             //catégorie Gainer / Mass
             Produit(
+                id = 1,
                 nom = "Solid Mass",
                 poids= "1500g",
                 categorie = "Gainer / Mass",
@@ -58,9 +60,10 @@ private class DatabaseCallback(
                 description = "Solid Mass est un gainer puissant favorisant une prise de masse rapide, riche en glucides et protéines de qualité.",
                 composition = "farine d'avoine, fructose, vitamines, créatine monohydrate, concentré de proteine, arômes.",
                 portion = "100g",
-                image_src = "@drawable/solidmass1500g"
+                image_src = R.drawable.solidmass1500g
             ),
             Produit(
+                id = 2,
                 nom = "Solid Mass",
                 poids= "5000g",
                 categorie = "Gainer / Mass",
@@ -68,9 +71,10 @@ private class DatabaseCallback(
                 description = "Solid Mass est un gainer puissant favorisant une prise de masse rapide, riche en glucides et protéines de qualité.",
                 composition = "farine d'avoine, fructose, vitamines, créatine monohydrate, concentré de proteine, arômes.",
                 portion = "100g",
-                image_src = "@drawable/solidmass5000g"
+                image_src = R.drawable.solidmass5000g
             ),
             Produit(
+                id = 3,
                 nom = "Ultra Gainer",
                 poids= "1500g",
                 categorie = "Gainer / Mass",
@@ -78,9 +82,10 @@ private class DatabaseCallback(
                 description = "Ultra Gainer est un complément hypercalorique favorisant la prise de masse, riche en glucides et en protéines.",
                 composition = "maltodextrine, fructose, vitamines, créatine monohydrate, isolat de proteine, poudre de cacao.",
                 portion = "100g",
-                image_src = "@drawable/ultragainer1500g"
+                image_src = R.drawable.ultragainer1500g
             ),
             Produit(
+                id = 4,
                 nom = "Ultra Gainer",
                 poids= "5000g",
                 categorie = "Gainer / Mass",
@@ -88,11 +93,12 @@ private class DatabaseCallback(
                 description = "Ultra Gainer est un complément hypercalorique favorisant la prise de masse, riche en glucides et en protéines.",
                 composition = "maltodextrine, fructose, vitamines, créatine monohydrate, isolat de proteine, poudre de cacao.",
                 portion = "100g",
-                image_src = "@drawable/ultragainer5000g"
+                image_src = R.drawable.ultragainer5000g
             ),
 
             //catégorie Proteines Whey
             Produit(
+                id = 5,
                 nom = "Casein",
                 poids= "1000g",
                 categorie = "Protéine Whey",
@@ -100,9 +106,10 @@ private class DatabaseCallback(
                 description = "La caséine est idéale pour nourrir les muscles pendant la nuit et favoriser la récupération musculaire prolongée.",
                 composition = "caséine micellaire, poudre de cacao, édulcorant : sucralose (SIN955).",
                 portion = "30g",
-                image_src = "@drawable/casein1000g"
+                image_src = R.drawable.casein1000g
             ),
             Produit(
+                id = 6,
                 nom = "Casein",
                 poids= "2000g",
                 categorie = "Protéine Whey",
@@ -110,9 +117,10 @@ private class DatabaseCallback(
                 description = "La caséine est idéale pour nourrir les muscles pendant la nuit et favoriser la récupération musculaire prolongée.",
                 composition = "caséine micellaire, poudre de cacao, édulcorant : sucralose (SIN955).",
                 portion = "30g",
-                image_src = "@drawable/casein2000g"
+                image_src = R.drawable.casein2000g
             ),
             Produit(
+                id = 7,
                 nom = "Hydrotech",
                 poids= "1000g",
                 categorie = "Protéine Whey",
@@ -120,9 +128,10 @@ private class DatabaseCallback(
                 description = "Hydrotech est une protéine de haute qualité, riche en hydrolysats, aide à la récupération musculaire optimale.",
                 composition = "hydrolysat de protéine, L-glutamine, L-arginine HCl, arômes, concentré de jus de betterave.",
                 portion = "30g",
-                image_src = "@drawable/hydrotech1000g"
+                image_src = R.drawable.hydrotech1000g
             ),
             Produit(
+                id = 8,
                 nom = "Isotech",
                 poids= "4000g",
                 categorie = "Protéine Whey",
@@ -130,11 +139,12 @@ private class DatabaseCallback(
                 description = "Isotech est une protéine de lactosérum pure et rapidement assimilée, idéale pour soutenir la récupération musculaire.",
                 composition = "isolat de protéine, poudre de cacao, acide citrique (SIN330), concentré de jus de betterave, vitamine D.",
                 portion = "25g",
-                image_src = "@drawable/isotech4000g"
+                image_src = R.drawable.isotech4000g
             ),
 
             //catégorie Créatine / Force
             Produit(
+                id = 9,
                 nom = "Créatine",
                 poids= "350g",
                 categorie = "Créatine / Force",
@@ -142,9 +152,10 @@ private class DatabaseCallback(
                 description = "La créatine est un complément naturel utilisé pour améliorer la performance physique. Elle favorise aussi la prise de masse musculaire.",
                 composition = "lait, céréales, soja, œufs,cacahuètes et noix",
                 portion = "5g",
-                image_src = "@drawable/creatine350g"
+                image_src = R.drawable.creatine350g
             ),
             Produit(
+                id = 10,
                 nom = "Amino EAA",
                 poids= "400g",
                 categorie = "Créatine / Force",
@@ -152,9 +163,10 @@ private class DatabaseCallback(
                 description = "Amino EAA est un mélange d’acides aminés essentiels qui améliore l’endurance et favorise la croissance musculaire.",
                 composition = "L-leucine, L-isoleucine, L-phénylalanine, L-méthionine, L-thréonine, L-tryptophane, malate de citrulline.",
                 portion = "10g",
-                image_src = "@drawable/amino_eaa"
+                image_src = R.drawable.amino_eaa
             ),
             Produit(
+                id = 11,
                 nom = "L-Glutamine",
                 poids= "400g",
                 categorie = "Créatine / Force",
@@ -162,9 +174,10 @@ private class DatabaseCallback(
                 description = "La L-Glutamine est un acide aminé essentiel à la récupération musculaire, qui aide à réduire la fatigue et soutient le système immunitaire après l’entraînement.",
                 composition = "L-Glutamine pure, sans autres ingrédients.",
                 portion = "5g",
-                image_src = "@drawable/glutamine"
+                image_src = R.drawable.glutamine
             ),
             Produit(
+                id = 12,
                 nom = "Flex Shield",
                 poids= "375g",
                 categorie = "Créatine / Force",
@@ -172,11 +185,12 @@ private class DatabaseCallback(
                 description = "Flex Shield est conçu pour protéger et renforcer les articulations et soutenir les entraînements intensifs.",
                 composition = "Glucosamine, MSM (Méthylsulfonylméthane), Chondroïtine, Boswellia Serrata, acide hyaluronique.",
                 portion = "15g",
-                image_src = "@drawable/flex_shield"
+                image_src = R.drawable.flex_shield
             ),
 
             //catégorie Énergie
             Produit(
+                id = 13,
                 nom = "Savage Pre-Workout",
                 poids= "20x200ml",
                 categorie = "Énergie",
@@ -184,9 +198,10 @@ private class DatabaseCallback(
                 description = "Savage Pre-Workout est une boisson énergisante conçue pour booster l'énergie et l'endurance avant l'entraînement.",
                 composition = "citrulline malate, caféine anhydre, L-théanine, extrait de thé vert, acide D-aspartique.",
                 portion = "200ml",
-                image_src = "@drawable/savage"
+                image_src = R.drawable.savage
             ),
             Produit(
+                id = 14,
                 nom = "EAA",
                 poids= "12x330ml",
                 categorie = "Énergie",
@@ -194,9 +209,10 @@ private class DatabaseCallback(
                 description = "La boisson EAA est une formule riche en citrulline pour soutenir la circulation sanguine et pour booster l'énergie.",
                 composition = "sucralose (E955), citrulline malate, caféine anhydre, L-théanine, L-leucine, L-valine, L-isoleucine.",
                 portion = "330ml",
-                image_src = "@drawable/boisson_eaa"
+                image_src = R.drawable.boisson_eaa
             ),
             Produit(
+                id = 15,
                 nom = "L-Carnitine",
                 poids= "12x500ml",
                 categorie = "Énergie",
@@ -204,9 +220,10 @@ private class DatabaseCallback(
                 description = "La boisson L-Carnitine aide à optimiser la combustion des graisses et à améliorer l'endurance pendant l'exercice.",
                 composition = "eau, sucralose, acide citrique, l-carnitine, l-tartrate, sels minéraux, arômes.",
                 portion = "500ml",
-                image_src = "@drawable/carnitine"
+                image_src = R.drawable.carnitine
             ),
             Produit(
+                id = 16,
                 nom = "Carbo fuel",
                 poids= "1000g",
                 categorie = "Énergie",
@@ -214,7 +231,7 @@ private class DatabaseCallback(
                 description = "Carbo Fuel est un complément à base de glucides, idéale pour soutenir l'endurance et la performance.",
                 composition = "maltodextrine, dextrose, fructose, acide citrique, potassium citrate, arômes.",
                 portion = "75g",
-                image_src = "@drawable/carbo1000g"
+                image_src = R.drawable.carbo1000g
             ),
         )
 

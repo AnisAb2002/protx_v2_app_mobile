@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -80,51 +79,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/nav"
         android:orientation="horizontal"
-        >
+        android:paddingBottom="30dp">
+
         <LinearLayout
+            android:id="@+id/containerProduits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:paddingVertical="15dp"
-            android:background="@drawable/rounded_bg">
+            android:orientation="vertical"
+            android:padding="10dp"/>
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/produit_image"
-                android:contentDescription="@string/produit_image"
-                android:src="@drawable/solidmass1500g" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Produit 1"
-                android:textColor="@color/grey" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Protéines"
-                android:textColor="@color/grey" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="8$"
-                    android:textColor="@color/grey"
-                    style="@style/TextAppearance.AppCompat.Title"
-                />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aperçu"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/grey"
-                />
-        </LinearLayout>
     </ScrollView>
 
 

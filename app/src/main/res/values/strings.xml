@@ -24,4 +24,6 @@
     <string name="envoyer">Envoyer</string>
     <string name="Aide_assistance_paragraphe">Remplissez ce formulaire pour que nous puissions vous recommander le produit le mieux adapté à vos besoins.</string>
     <string name="produit_image">produit_image</string>
+    <string name="produit_nom">Produit_Nom</string>
+    <string name="apercu">Aperçu</string>
 </resources>
