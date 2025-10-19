@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import fr.devmobile.protx_v2.databinding.ActivityMainBinding
 import java.util.Locale
 

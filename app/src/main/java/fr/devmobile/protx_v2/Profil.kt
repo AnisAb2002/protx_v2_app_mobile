@@ -102,7 +102,7 @@ class Profil : AppCompatActivity() {
                     }
 
                 } else {
-                    // utilisateur introuvable → forcer reconnexion
+                    // utilisateur introuvable
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@Profil,
