@@ -31,7 +31,7 @@ class Accueil : AppCompatActivity() {
             startActivity(intent)
         }
         binding.paramBtn.setOnClickListener {
-            val intent = Intent(this, Parametres::class.java)
+            val intent = Intent(this, Profil::class.java)
             startActivity(intent)
         }
 

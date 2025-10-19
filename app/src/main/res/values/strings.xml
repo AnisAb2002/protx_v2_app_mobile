@@ -7,6 +7,11 @@
         <item>Maintien de la forme</item>
     </string-array>
 
+    <string-array name="langue_array">
+        <item>Français</item>
+        <item>Anglais</item>
+    </string-array>
+
     <string name="app_name">Protx_V2</string>
     <string name="protx_logo">Protx Logo</string>
     <string name="produits">Produits</string>
@@ -26,4 +31,27 @@
     <string name="produit_image">produit_image</string>
     <string name="produit_nom">Produit_Nom</string>
     <string name="apercu">Aperçu</string>
+    <string name="parametres">Paramètres</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="profil_paragraphe">Gérez vos expériences et vos paramètres de compte</string>
+    <string name="modifier_prenom">modifier prenom</string>
+    <string name="modifier_nom">modifier nom</string>
+    <string name="modifier_age">modifier age</string>
+    <string name="modifier_taille">modifier taille</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="ignorer">Ignorer</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="profil">Profil</string>
+    <string name="informations_personelles">Informations personelles</string>
+    <string name="modifier_mes_informations">Modifier mes informations</string>
+    <string name="langue">Langue</string>
+    <string name="francais">Français</string>
+    <string name="modifier_la_langue">Modifier la langue</string>
+    <string name="changer_la_langue">Changer la langue</string>
+    <string name="se_d_connecter">Se déconnecter</string>
+    <string name="fermer">Fermer</string>
 </resources>

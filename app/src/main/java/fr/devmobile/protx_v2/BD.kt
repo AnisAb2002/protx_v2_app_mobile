@@ -10,9 +10,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Produit::class], version = 3)
+@Database(entities = [Produit::class, Utilisateur::class], version = 4, exportSchema = false)
 abstract class BD : RoomDatabase() {
     abstract fun produitDao(): Produit_dao
+    abstract fun utilisateurDao(): Utilisateur_dao
 
     companion object {
         @Volatile private var INSTANCE: BD? = null

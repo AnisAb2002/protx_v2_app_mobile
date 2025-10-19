@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Connexion"
+    android:background="@drawable/background_dumbels">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/logo_p8"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:contentDescription="@string/logo_de_projet_paris_8_tudiant"
+            app:srcCompat="@drawable/logos_projets_etudiant" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="80dp"
+            android:contentDescription="@string/protx_logo"
+            app:srcCompat="@drawable/logo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/identifiant"
+                    android:labelFor="@+id/identifiant"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:id="@+id/identifiant"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mot_de_passe"
+                    android:labelFor="@+id/mdp"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+
+                <EditText
+                    android:id="@+id/mdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/buttonSeConnecter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/se_connecter"
+            android:layout_gravity="center"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="10dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/buttonInscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/s_inscrire"
+            android:layout_gravity="center"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="10dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/buttonIgnorer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ignorer"
+            android:layout_gravity="center"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="8dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

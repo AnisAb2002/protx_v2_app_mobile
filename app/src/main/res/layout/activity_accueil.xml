@@ -59,7 +59,7 @@
                 android:id="@+id/paramBtn"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:text="@string/param_tres"
+                android:text="@string/profil"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
         <TextView

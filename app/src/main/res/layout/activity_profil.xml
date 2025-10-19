@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profil"
+    android:background="@color/grey">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        tools:ignore="UselessParent"
+        android:id="@+id/layout_up">
+
+        <ImageButton
+            android:id="@+id/retourBouton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/bouton_retourner"
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/white"
+            android:backgroundTint="@color/grey"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profil"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="40dp"
+            android:justificationMode="inter_word"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="@string/profil_paragraphe" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
+            android:justificationMode="inter_word"
+            android:textStyle="bold"
+            android:textSize="21sp"
+            android:text="@string/informations_personelles" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/information_profil_container"
+            android:orientation="vertical">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:paddingVertical="10dp"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:text="@string/langue" />
+
+            <TextView
+                android:id="@+id/langueChoisie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/francais"
+                android:textSize="17sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/boutonModifierLangue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginVertical="15dp"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:text="@string/changer_la_langue"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Protx_V2">
         <activity
-            android:name=".Parametres"
+            android:name=".Inscription"
+            android:exported="false" />
+        <activity
+            android:name=".Connexion"
+            android:exported="false" />
+        <activity
+            android:name=".Profil"
             android:exported="false" />
         <activity
             android:name=".Assistance"
