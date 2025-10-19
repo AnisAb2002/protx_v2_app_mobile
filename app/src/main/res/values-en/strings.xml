@@ -1,0 +1,57 @@
+<resources>
+
+    <string-array name="objectifs_array">
+        <item>Weight loss</item>
+        <item>Muscle gain</item>
+        <item>Performance improvement</item>
+        <item>Stay in shape</item>
+    </string-array>
+
+    <string-array name="langue_array">
+        <item>French</item>
+        <item>English</item>
+    </string-array>
+
+    <string name="app_name">Protx_V2</string>
+    <string name="protx_logo">Protx Logo</string>
+    <string name="produits">Products</string>
+    <string name="assistance">Assistance</string>
+    <string name="param_tres">Settings</string>
+    <string name="fond_ecran">Dumbbell background</string>
+    <string name="logo_de_projet_paris_8_tudiant">Logo Paris 8</string>
+    <string name="acceder">Enter</string>
+    <string name="assistan">Assistance</string>
+    <string name="bouton_retourner">Back button</string>
+    <string name="age">Age</string>
+    <string name="taille">Height (cm)</string>
+    <string name="poids_kg">Weight (kg)</string>
+    <string name="objectif">Goal</string>
+    <string name="envoyer">Send</string>
+    <string name="Aide_assistance_paragraphe">Fill out this form so we can recommend the product best suited to your needs.</string>
+    <string name="produit_image">product_image</string>
+    <string name="produit_nom">Product_Name</string>
+    <string name="apercu">Preview</string>
+    <string name="parametres">Settings</string>
+    <string name="prenom">First name</string>
+    <string name="nom">Last name</string>
+    <string name="profil_paragraphe">Manage your experience and account settings</string>
+    <string name="modifier_prenom">Edit first name</string>
+    <string name="modifier_nom">Edit last name</string>
+    <string name="modifier_age">Edit age</string>
+    <string name="modifier_taille">Edit height</string>
+    <string name="se_connecter">Log in</string>
+    <string name="ignorer">Skip</string>
+    <string name="s_inscrire">Sign up</string>
+    <string name="identifiant">Username</string>
+    <string name="mot_de_passe">Password</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="profil">Profile</string>
+    <string name="informations_personelles">Personal information</string>
+    <string name="modifier_mes_informations">Edit my information</string>
+    <string name="langue">Language</string>
+    <string name="francais">Français</string>
+    <string name="changer_la_langue">Change language</string>
+    <string name="se_d_connecter">Log out</string>
+    <string name="fermer">Close</string>
+    <string name="english">English</string>
+</resources>

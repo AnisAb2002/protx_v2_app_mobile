@@ -36,7 +36,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/nom"
-                    android:labelFor="@+id/nom"
+                    android:labelFor="@+id/nomEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -56,7 +56,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/prenom"
-                    android:labelFor="@+id/prenom"
+                    android:labelFor="@+id/prenomEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -76,7 +76,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/age"
-                    android:labelFor="@+id/age"
+                    android:labelFor="@+id/ageEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -96,7 +96,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/taille"
-                    android:labelFor="@+id/taille"
+                    android:labelFor="@+id/tailleEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -116,7 +116,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/poids_kg"
-                    android:labelFor="@+id/poids"
+                    android:labelFor="@+id/poidsEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -136,7 +136,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/identifiant"
-                    android:labelFor="@+id/identifiant"
+                    android:labelFor="@+id/identifiantEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
                 <EditText
@@ -157,7 +157,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mot_de_passe"
-                    android:labelFor="@+id/mdp"
+                    android:labelFor="@+id/mdpEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
 
@@ -178,7 +178,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/confirmation"
-                    android:labelFor="@+id/mdpConfirmation"
+                    android:labelFor="@+id/mdpConfirmationEditText"
                     android:textSize="15sp"
                     android:textColor="@color/white"/>
 

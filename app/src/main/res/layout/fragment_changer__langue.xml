@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_up"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="40dp"
+        tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/retourBouton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/grey"
+            android:contentDescription="@string/bouton_retourner"
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/titreLangue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:text="@string/changer_la_langue"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:id="@+id/groupeLangue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp">
+
+        <RadioButton
+            android:id="@+id/langFr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/francais"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/langEn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/english"
+            android:textColor="@color/white" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/boutonValiderLangue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/confirmation"
+        android:textColor="@color/grey" />
+
+</LinearLayout>

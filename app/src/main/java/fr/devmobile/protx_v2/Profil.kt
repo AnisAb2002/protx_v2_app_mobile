@@ -1,5 +1,6 @@
 package fr.devmobile.protx_v2
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ class Profil : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfilBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,11 +33,22 @@ class Profil : AppCompatActivity() {
         }
 
         binding.boutonModifierLangue.setOnClickListener {
-            Toast.makeText(this@Profil, "Langue", Toast.LENGTH_SHORT).show()
+            val fragmentLangue = Changer_Langue()
+            fragmentLangue.show(supportFragmentManager, "Changer_Langue")
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
         val userId = sharedPref.getInt("donnees_utilisateur", -1)
+        val langue = sharedPref.getString("langue","fr")
+
+        if(langue == "fr") {
+            binding.langueChoisie.text = "Français"
+        }
+        else{
+            binding.langueChoisie.text = "English"
+        }
+
+
 
         if (userId == -1) {
             Toast.makeText(this@Profil, "Veuillez vous connectez", Toast.LENGTH_SHORT).show()
@@ -103,4 +116,5 @@ class Profil : AppCompatActivity() {
             }
         }
     }
+
 }

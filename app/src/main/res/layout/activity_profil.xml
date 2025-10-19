@@ -90,7 +90,7 @@
                 android:id="@+id/langueChoisie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/francais"
+                android:text=""
                 android:textSize="17sp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"/>

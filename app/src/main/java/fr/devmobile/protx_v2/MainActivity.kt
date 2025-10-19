@@ -1,9 +1,13 @@
 package fr.devmobile.protx_v2
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import fr.devmobile.protx_v2.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +15,12 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val prefs = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+        val langue = prefs.getString("langue", "fr")
+        setLocale(this, langue!!)
+
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,6 +47,19 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+
+
+
+    fun setLocale(context: Context, langue: String){
+        val locale = Locale(langue)
+        Locale.setDefault(locale)
+
+        val config = Configuration(context.resources.configuration)
+        config.setLocale(locale)
+
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 
 
