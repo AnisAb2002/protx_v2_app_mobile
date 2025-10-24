@@ -30,25 +30,28 @@ class Accueil : AppCompatActivity() {
             val intent = Intent(this, Assistance::class.java)
             startActivity(intent)
         }
-        binding.paramBtn.setOnClickListener {
+        binding.profilBtn.setOnClickListener {
             val intent = Intent(this, Profil::class.java)
             startActivity(intent)
+            finish()
         }
 
-        binding.produitsBtn.setOnClickListener {
-            val db = BD.getDatabase(this)
-            val produitDao = db.produitDao()
-            CoroutineScope(Dispatchers.IO).launch {
-                val produits = produitDao.getProduits()
+        val db = BD.getDatabase(this)
+        val produitDao = db.produitDao()
+        CoroutineScope(Dispatchers.IO).launch {
+            val produits = produitDao.getProduits()
 
-                if (produits.isEmpty()) {
-                    binding.produitsDescText.text = "Aucun produit trouvé"
-                } else {
-                    withContext(Dispatchers.Main) {
-                        afficherProduits(produits)
-                    }
+            if (produits.isEmpty()) {
+                binding.produitsDescText.text = "Aucun produit trouvé"
+            } else {
+                withContext(Dispatchers.Main) {
+                    afficherProduits(produits)
                 }
             }
+        }
+
+        binding.rechercherBtn.setOnClickListener {
+
         }
     }
 

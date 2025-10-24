@@ -29,6 +29,8 @@ class Profil : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.retourBouton.setOnClickListener {
+            val intent = Intent(this, Accueil::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -69,8 +71,7 @@ class Profil : AppCompatActivity() {
             val profil_container: LinearLayout = binding.informationProfilContainer
             val inflater = LayoutInflater.from(this)
 
-            val utilisateurInfoContainer =
-                InformationProfilBinding.inflate(inflater, profil_container, false)
+            val utilisateurInfoContainer = InformationProfilBinding.inflate(inflater, profil_container, false)
             profil_container.addView(utilisateurInfoContainer.root)
 
             val db = BD.getDatabase(this@Profil)
