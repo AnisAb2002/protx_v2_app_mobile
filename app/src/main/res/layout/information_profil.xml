@@ -16,7 +16,7 @@
         >
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             android:text="@string/prenom"
@@ -25,8 +25,8 @@
             android:textColor="@color/white"
             android:layout_gravity="center"/>
         <TextView
+            android:layout_width="280dp"
             android:id="@+id/prenomText"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16sp"
@@ -44,7 +44,7 @@
         >
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/nom"
             android:textSize="16sp"
@@ -53,8 +53,8 @@
             android:textColor="@color/white"
             android:layout_gravity="center"/>
         <TextView
+            android:layout_width="280dp"
             android:id="@+id/nomText"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16sp"
@@ -71,7 +71,7 @@
         >
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/age"
             android:textSize="16sp"
@@ -80,7 +80,7 @@
             android:layout_gravity="center"/>
         <TextView
             android:id="@+id/ageText"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16sp"
@@ -98,7 +98,7 @@
         >
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/taille"
             android:textSize="16sp"
@@ -106,8 +106,8 @@
             android:textColor="@color/white"
             android:layout_gravity="center"/>
         <TextView
+            android:layout_width="280dp"
             android:id="@+id/tailleText"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16sp"
@@ -124,7 +124,7 @@
         >
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/poids_kg"
             android:textSize="16sp"
@@ -133,7 +133,7 @@
             android:layout_gravity="center"/>
         <TextView
             android:id="@+id/poidsText"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16sp"
@@ -141,27 +141,35 @@
             android:layout_gravity="center"
             android:textColor="@color/white"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/boutonModifierInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/white"
-        android:layout_marginVertical="10dp"
-        android:textColor="@color/grey"
-        android:textSize="16sp"
-        android:text="@string/modifier_mes_informations"/>
 
-    <Button
-        android:id="@+id/boutonSeDeconnecter"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:layout_marginVertical="10dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/grey"
-        android:textSize="16sp"
-        android:text="@string/se_d_connecter"/>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/boutonModifierInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/white"
+            android:layout_marginVertical="10dp"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:text="@string/modifier_mes_informations"/>
+
+        <Button
+            android:id="@+id/boutonSeDeconnecter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:text="@string/se_d_connecter"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -27,6 +27,7 @@
     <string name="poids_kg">Weight (kg)</string>
     <string name="objectif">Goal</string>
     <string name="envoyer">Send</string>
+    <string name="remplir">Please fill in all fields</string>
     <string name="Aide_assistance_paragraphe">Fill out this form so we can recommend the product best suited to your needs.</string>
     <string name="produit_image">product_image</string>
     <string name="produit_nom">Product_Name</string>

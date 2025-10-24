@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface Utilisateur_dao {
@@ -16,6 +17,9 @@ interface Utilisateur_dao {
 
     @Query("SELECT * FROM utilisateurs WHERE idUtilisateur = :id LIMIT 1")
     suspend fun getConnecter(id: Int): Utilisateur?
+
+    @Update
+    suspend fun update(utilisateur: Utilisateur)
 
     @Query("DELETE FROM utilisateurs")
     suspend fun supprimerTous()

@@ -69,7 +69,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/information_profil_container"
             android:orientation="vertical"
-            android:layout_gravity="center"
             >
 
         </LinearLayout>

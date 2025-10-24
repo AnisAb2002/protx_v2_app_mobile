@@ -22,8 +22,20 @@ class Changer_Langue : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_changer__langue, container, false)
 
         val radioGroupe = view.findViewById<RadioGroup>(R.id.groupeLangue)
+        val radioFr = view.findViewById<RadioButton>(R.id.langFr)
+        val radioEn = view.findViewById<RadioButton>(R.id.langEn)
         val boutonValider = view.findViewById<Button>(R.id.boutonValiderLangue)
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
+
+        val prefs = requireContext().getSharedPreferences("donnees_utilisateur", Context.MODE_PRIVATE)
+        val langue = prefs.getString("langue", "fr")
+
+        if(langue == "fr"){
+            radioFr.isChecked = true
+        }
+        else{
+            radioEn.isChecked = true
+        }
 
         boutonValider.setOnClickListener {
             val idSelect =radioGroupe.checkedRadioButtonId

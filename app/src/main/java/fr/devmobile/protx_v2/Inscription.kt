@@ -3,15 +3,11 @@ package fr.devmobile.protx_v2
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import fr.devmobile.protx_v2.data.BD
 import fr.devmobile.protx_v2.data.Utilisateur
 import fr.devmobile.protx_v2.databinding.ActivityInscriptionBinding
-import fr.devmobile.protx_v2.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
 class Inscription : AppCompatActivity() {

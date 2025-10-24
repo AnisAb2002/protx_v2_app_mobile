@@ -18,7 +18,7 @@ class Connexion : AppCompatActivity() {
         binding = ActivityConnexionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val utilisateurDao = BD.getDatabase(this).utilisateurDao()
+        val utilisateurDao = BD.getDatabase(this@Connexion).utilisateurDao()
 
         binding.buttonSeConnecter.setOnClickListener {
             val identifiant = binding.identifiant.text.toString()

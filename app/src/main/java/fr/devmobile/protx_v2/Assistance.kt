@@ -32,8 +32,9 @@ class Assistance : AppCompatActivity() {
         val tailleTexte = binding.tailleEditText.text.toString()
         val poidsTexte = binding.poidsEditText.text.toString()
 
-        if (ageTexte.isEmpty() or tailleTexte.isEmpty() or poidsTexte.isEmpty()) {
-            Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+        if (ageTexte.isEmpty() || tailleTexte.isEmpty() || poidsTexte.isEmpty()) {
+            val message = getString(R.string.remplir)
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
             return
         }

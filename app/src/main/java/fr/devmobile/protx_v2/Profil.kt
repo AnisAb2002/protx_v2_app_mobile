@@ -73,7 +73,7 @@ class Profil : AppCompatActivity() {
                 InformationProfilBinding.inflate(inflater, profil_container, false)
             profil_container.addView(utilisateurInfoContainer.root)
 
-            val db = BD.getDatabase(this)
+            val db = BD.getDatabase(this@Profil)
             val utilisateurDao = db.utilisateurDao()
 
             lifecycleScope.launch {
@@ -86,12 +86,14 @@ class Profil : AppCompatActivity() {
                     utilisateurInfoContainer.poidsText.text = utilisateur.poids.toString()
 
                     utilisateurInfoContainer.boutonModifierInfo.setOnClickListener {
-                        Toast.makeText(this@Profil, "Modifier info", Toast.LENGTH_SHORT).show()
+                        val modifierInfos = Modifier_Infos()
+                        modifierInfos.show(supportFragmentManager, "Modifier_Infos")
                     }
+
                     utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {
                         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
                         sharedPref.edit {
-                            clear() // ou editor.remove("user_id")
+                            clear() // ou editor.remove("id...")
                             apply()
                         }
 
