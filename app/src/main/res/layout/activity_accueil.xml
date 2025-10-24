@@ -32,7 +32,6 @@
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
                 android:textSize="14sp"
-                android:textStyle="bold"
                 android:paddingHorizontal="0dp"
                 android:id="@+id/rechercherBtn"
                 android:layout_marginStart="10dp"
@@ -43,7 +42,6 @@
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
                 android:textSize="14sp"
-                android:textStyle="bold"
                 android:paddingHorizontal="0dp"
                 android:id="@+id/assistanceBtn"
                 android:layout_centerHorizontal="true"
@@ -54,7 +52,6 @@
                 android:backgroundTint="@color/white"
                 android:textColor="@color/grey"
                 android:textSize="14sp"
-                android:textStyle="bold"
                 android:paddingHorizontal="0dp"
                 android:id="@+id/profilBtn"
                 android:layout_alignParentEnd="true"
@@ -79,7 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/nav"
         android:orientation="horizontal"
-        android:paddingBottom="30dp">
+        android:paddingBottom="30dp"
+        android:contentDescription="@string/produits">
 
         <LinearLayout
             android:id="@+id/containerProduits"

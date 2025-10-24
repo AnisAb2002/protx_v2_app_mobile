@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Protx_V2">
         <activity
+            android:name=".Recherche"
+            android:exported="false" />
+        <activity
             android:name=".Inscription"
             android:exported="false" />
         <activity

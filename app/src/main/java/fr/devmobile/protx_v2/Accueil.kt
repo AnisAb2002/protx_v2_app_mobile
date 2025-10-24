@@ -26,6 +26,12 @@ class Accueil : AppCompatActivity() {
         binding = ActivityAccueilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.rechercherBtn.setOnClickListener {
+            val intent = Intent(this, Recherche::class.java)
+            startActivity(intent)
+        }
+
         binding.assistanceBtn.setOnClickListener {
             val intent = Intent(this, Assistance::class.java)
             startActivity(intent)
@@ -50,9 +56,6 @@ class Accueil : AppCompatActivity() {
             }
         }
 
-        binding.rechercherBtn.setOnClickListener {
-
-        }
     }
 
     @SuppressLint("SetTextI18n")

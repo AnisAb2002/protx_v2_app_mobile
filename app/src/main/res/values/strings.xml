@@ -56,4 +56,7 @@
     <string name="se_d_connecter">Se déconnecter</string>
     <string name="fermer">Fermer</string>
     <string name="english">English</string>
+    <string name="rechercheVide">Le champ de saisie est vide</string>
+    <string name="rienTrouve">Oups ! On n’a rien trouvé. Utilisez d’autres mots.</string>
+    <string name="recherchebouton">rechercheBouton</string>
 </resources>

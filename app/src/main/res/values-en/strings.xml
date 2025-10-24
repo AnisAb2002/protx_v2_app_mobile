@@ -56,4 +56,6 @@
     <string name="se_d_connecter">Log out</string>
     <string name="fermer">Close</string>
     <string name="english">English</string>
+    <string name="rechercheVide">The input field is empty</string>
+    <string name="rienTrouve">Oups ! Nothing found. Try with other keywords.</string>
 </resources>
