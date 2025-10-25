@@ -60,15 +60,16 @@
             android:text="@string/english"
             android:textColor="@color/white" />
     </RadioGroup>
-
-    <Button
-        android:id="@+id/boutonValiderLangue"
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
-        android:text="@string/confirmation"
-        android:textColor="@color/grey" />
+        android:id="@+id/boutonValiderLangue"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+        android:text="@string/confirmation"/>
 
 </LinearLayout>

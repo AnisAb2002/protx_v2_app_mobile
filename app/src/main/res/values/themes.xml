@@ -5,8 +5,19 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item> <!-- texte sombre -->
+        <item name="android:buttonStyle">@style/ProtxButton</item>
     </style>
 
-    <style name="Theme.Protx_V2" parent="Base.Theme.Protx_V2" />
+    <style name="Theme.Protx_V2" parent="Base.Theme.Protx_V2">
+        <item name="android:imageButtonStyle">@style/ProtxButton</item>
+    </style>
+
+    <style name="ProtxButton">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:background">@drawable/rounded_bg</item>
+        <item name="android:backgroundTint">@null</item>
+
+    </style>
+
 
 </resources>

@@ -36,76 +36,86 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="100dp">
+        android:layout_below="@id/layout_up">
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingVertical="15dp"
-            android:paddingHorizontal="40dp"
-            android:justificationMode="inter_word"
-            android:gravity="center"
-            android:textSize="17sp"
-            android:text="@string/profil_paragraphe" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="15dp"
-            android:justificationMode="inter_word"
-            android:textStyle="bold"
-            android:textSize="21sp"
-            android:text="@string/informations_personelles" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/information_profil_container"
             android:orientation="vertical">
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            >
+
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:paddingVertical="15dp"
+                android:paddingHorizontal="40dp"
+                android:justificationMode="inter_word"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:text="@string/profil_paragraphe" />
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:paddingVertical="10dp"
+                android:paddingHorizontal="15dp"
+                android:justificationMode="inter_word"
                 android:textStyle="bold"
                 android:textSize="21sp"
-                android:text="@string/langue" />
-
-            <TextView
-                android:id="@+id/langueChoisie"
-                android:layout_width="wrap_content"
+                android:text="@string/informations_personelles" />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="17sp"
-                android:layout_gravity="center"
-                android:textColor="@color/white"/>
+                android:id="@+id/information_profil_container"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                >
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:paddingVertical="10dp"
+                    android:textStyle="bold"
+                    android:textSize="21sp"
+                    android:text="@string/langue" />
+
+                <TextView
+                    android:id="@+id/langueChoisie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:id="@+id/boutonModifierLangue"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="3dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:text="@string/changer_la_langue"/>
+
         </LinearLayout>
-        <Button
-            android:id="@+id/boutonModifierLangue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:layout_marginVertical="15dp"
-            android:textColor="@color/grey"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:text="@string/changer_la_langue"/>
-    </LinearLayout>
+
+    </ScrollView>
+
+
 
 
 </RelativeLayout>

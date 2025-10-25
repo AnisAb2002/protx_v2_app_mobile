@@ -8,15 +8,7 @@
     tools:context=".Connexion"
     android:background="@drawable/background_dumbels">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
-
         <ImageView
-            android:id="@+id/logo_p8"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
@@ -27,14 +19,15 @@
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="180dp"
             android:contentDescription="@string/protx_logo"
             app:srcCompat="@drawable/logo" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp">
+            android:layout_centerVertical="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,50 +71,48 @@
                     android:textColor="@color/white"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
-
-
-
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:id="@+id/buttonSeConnecter"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/grey"
+                android:textSize="13sp"
+                android:text="@string/se_connecter"/>
         </LinearLayout>
-        <Button
-            android:id="@+id/buttonSeConnecter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/se_connecter"
-            android:layout_gravity="center"
-            android:paddingHorizontal="25dp"
-            android:paddingVertical="10dp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/grey"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/buttonInscription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:text="@string/s_inscrire"
-            android:layout_gravity="center"
-            android:paddingHorizontal="25dp"
-            android:paddingVertical="10dp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/grey"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/buttonIgnorer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/ignorer"
-            android:layout_gravity="center"
-            android:paddingHorizontal="22dp"
-            android:paddingVertical="8dp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/grey"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
 
-    </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:id="@+id/buttonInscription"
+                android:layout_marginHorizontal="4dp"
+                android:textColor="@color/grey"
+                android:textSize="13sp"
+                android:text="@string/s_inscrire"/>
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:id="@+id/buttonIgnorer"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="13sp"
+                android:text="@string/ignorer"/>
+        </LinearLayout>
 </RelativeLayout>

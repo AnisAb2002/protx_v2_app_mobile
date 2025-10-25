@@ -59,6 +59,7 @@
                 android:id="@+id/nomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:autofillHints=""
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:layout_marginBottom="2dp"/>
@@ -144,17 +145,17 @@
                 android:layout_marginBottom="2dp"/>
         </LinearLayout>
 
-
-
-        <Button
-            android:id="@+id/boutonConfirmer"
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
-            android:text="@string/confirmation"
-            android:textColor="@color/grey" />
+            android:id="@+id/boutonConfirmer"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:text="@string/confirmation"/>
     </LinearLayout>
 
 </LinearLayout>

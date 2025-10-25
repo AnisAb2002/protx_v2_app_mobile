@@ -28,7 +28,6 @@
             android:layout_centerVertical="true"
             />
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/assistan"
@@ -42,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="150dp">
+        android:layout_below="@+id/layout_up">
 
 
         <TextView
@@ -184,15 +183,16 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/envoyerButton"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/envoyer"
+            android:backgroundTint="@color/white"
+            android:id="@+id/envoyerButton"
+            android:layout_marginHorizontal="4dp"
             android:textColor="@color/grey"
-            android:backgroundTint="@color/white"/>
+            android:textSize="13sp"
+            android:text="@string/envoyer"/>
 
     </LinearLayout>
 
