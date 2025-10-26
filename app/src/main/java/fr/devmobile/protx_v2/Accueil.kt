@@ -53,7 +53,6 @@ class Accueil : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")

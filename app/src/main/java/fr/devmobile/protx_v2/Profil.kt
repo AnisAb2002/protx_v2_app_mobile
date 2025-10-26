@@ -39,7 +39,7 @@ class Profil : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val userId = sharedPref.getInt("donnees_utilisateur", -1)
+        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
         val langue = sharedPref.getString("langue","fr")
 
         if(langue == "fr") {
@@ -51,7 +51,7 @@ class Profil : AppCompatActivity() {
 
 
 
-        if (userId == -1) {
+        if (idUtilisateur == -1) {
             val profil_container: LinearLayout = binding.informationProfilContainer
             val inflater = LayoutInflater.from(this)
 
@@ -72,11 +72,11 @@ class Profil : AppCompatActivity() {
             val utilisateurInfoContainer = InformationProfilBinding.inflate(inflater, profil_container, false)
             profil_container.addView(utilisateurInfoContainer.root)
 
-            val db = BD.getDatabase(this@Profil)
+            val db = BD.getDatabase(this)
             val utilisateurDao = db.utilisateurDao()
 
             lifecycleScope.launch {
-                val utilisateur = utilisateurDao.getConnecter(userId)
+                val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
                 if (utilisateur != null) {
                     utilisateurInfoContainer.nomText.text = utilisateur.nom
                     utilisateurInfoContainer.prenomText.text = utilisateur.prenom

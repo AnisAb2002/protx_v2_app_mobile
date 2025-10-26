@@ -1,9 +1,19 @@
 package fr.devmobile.protx_v2
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
 import fr.devmobile.protx_v2.databinding.ActivityAssistanceBinding
+import fr.devmobile.protx_v2.databinding.ConnecterProfilBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Assistance : AppCompatActivity() {
 
@@ -20,12 +30,31 @@ class Assistance : AppCompatActivity() {
             finish()
         }
 
+        val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
+        if (idUtilisateur != -1) {
+            //Conecté
+            //remplissage des EditText avec les informations qu'on a déja sur l'utilisateur
+
+            val bd = BD.getDatabase(this)
+            val utilisateurDao = bd.utilisateurDao()
+            lifecycleScope.launch {
+                val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
+                if (utilisateur != null) {
+                    binding.ageEditText.setText(utilisateur.age.toString())
+                    binding.tailleEditText.setText(utilisateur.taille.toString())
+                    binding.poidsEditText.setText(utilisateur.poids.toString())
+                }
+            }
+        }
+
         binding.envoyerButton.setOnClickListener {
             chercerProduit()
         }
 
     }
 
+    @SuppressLint("DefaultLocale")
     private fun chercerProduit() {
 
         val ageTexte = binding.ageEditText.text.toString()
@@ -35,43 +64,34 @@ class Assistance : AppCompatActivity() {
         if (ageTexte.isEmpty() || tailleTexte.isEmpty() || poidsTexte.isEmpty()) {
             val message = getString(R.string.remplir)
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
             return
         }
-        else{
-            val age = ageTexte.toFloat()
+
+
+            val age = ageTexte.toInt()
             val taille = tailleTexte.toFloat() /100 //en m pas en cm
             val  poids = poidsTexte.toFloat()
             val  objectif = binding.objectifSpinner.selectedItem.toString()
 
             val imc = poids/(taille*taille)
 
-            if(age <18){
-                //pas trop agé
-                Toast.makeText(this, "Conseil : éviter ces produits", Toast.LENGTH_SHORT).show()
+            val bundle = Bundle().apply {
+                putString("imc", String.format("%.2f",imc))
             }
-            else{
-                if (imc<18.5){
-                    //prise de masse forcée
-                    Toast.makeText(this, "$imc produits de prise de mass", Toast.LENGTH_SHORT).show()
-                }
-                else if(imc>30){
-                    //perte de poids forcée
-                    //proteine
-                    Toast.makeText(this, "produits de perte de poids ", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    when(objectif){
-                        "Perte de poids" -> Toast.makeText(this, "Créatine", Toast.LENGTH_SHORT).show()
-                        "Prise de masse" -> Toast.makeText(this, "Proteines Whey, Gainer Mass et energisant", Toast.LENGTH_SHORT).show()
-                        "Amélioration des performances" -> Toast.makeText(this, "Energisant et créatine", Toast.LENGTH_SHORT).show()
-                        "Maintien de la forme" -> Toast.makeText(this, "Energisant et proteines ", Toast.LENGTH_SHORT).show()
-                    }
+
+            when {
+                age <18 -> bundle.putString("cas", "1")
+                imc < 18.5 -> bundle.putString("cas", "2")
+                imc>30 -> bundle.putString("cas", "3")
+                else -> when(objectif){
+                    "Perte de poids" -> bundle.putString("cas", "4")
+                    "Prise de masse" -> bundle.putString("cas", "5")
+                    "Amélioration des performances" -> bundle.putString("cas", "6")
+                    "Maintien de la forme" -> bundle.putString("cas", "7")
                 }
             }
 
-        }
-
-
+        val fragment = AssistanceProduits().apply { arguments = bundle }
+        fragment.show(supportFragmentManager, "AssistanceProduits")
     }
 }

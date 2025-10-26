@@ -82,4 +82,14 @@
     <string name="nouveau_mot_de_passe">New password</string>
     <string name="miseajour_mot_de_passe">Password changed</string>
     <string name="MdpIncorrect">Incorrect current password</string>
+    <string name="retour_assistance">Assistance response</string>
+    <string name="aucunProduitTrouve">No products were found. You can check out our other products or try again with different information.</string>
+    <string name="SelonIMC">Based on your BMI: </string>
+    <string name="cas1">We advise you not to consume these dietary supplements if you are under 18 years old. \n \n These products are formulated for adults and have not been tested for use in minors. Therefore, their safety and effectiveness cannot be guaranteed for your age group. \n \n We recommend that you consult a healthcare professional before taking any dietary supplement.</string>
+    <string name="cas2">cas2</string>
+    <string name="cas3">cas3</string>
+    <string name="cas4">cas4</string>
+    <string name="cas5">Cas5</string>
+    <string name="cas6">cas6</string>
+    <string name="cas7">Cas7</string>
 </resources>
