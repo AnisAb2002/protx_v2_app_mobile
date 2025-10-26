@@ -84,12 +84,16 @@
     <string name="MdpIncorrect">Mot de passe acutel incorrect</string>
     <string name="retour_assistance">Retour d’assistance</string>
     <string name="aucunProduitTrouve">Nous n’avons trouvé aucun produit. Vous pouvez consulter nos autres produits ou réessayer avec des informations différentes.</string>
-    <string name="SelonIMC">Selon votre IMC :</string>
+    <string name="SelonIMC">Votre IMC :</string>
+    <string name="perte_poids">Perte de poids</string>
+    <string name="prise_poids">Prise de masse</string>
+    <string name="performance">Amélioration des performances</string>
+    <string name="maintien">Maintien de la forme</string>
     <string name="cas1">Nous vous conseillons de ne pas consommer ces compléments alimentaires si vous avez moins de 18 ans. \n \n Ces produits sont formulés pour des adultes et n’ont pas été testés pour une utilisation chez les mineurs. Leur sécurité et leur efficacité ne peuvent donc pas être garanties pour votre âge. \n \n Nous vous recommandons d’en parler avec un professionnel de santé avant toute prise de complément alimentaire.</string>
-    <string name="cas2">cas2</string>
-    <string name="cas3">cas3</string>
-    <string name="cas4">cas4</string>
-    <string name="cas5">Cas5</string>
-    <string name="cas6">cas6</string>
-    <string name="cas7">Cas7</string>
+    <string name="cas2">Votre IMC est inférieur à la normale. Nous vous conseillons d’orienter votre choix vers des compléments favorisant la prise de masse.\n\n Ces recommandations ne remplacent pas un avis médical, il est important de consulter un professionnel de santé.</string>
+    <string name="cas3">Votre IMC est supérieur à la normale. Nous vous conseillons d’orienter votre choix vers des compléments favorisant la perte de poids.\n\nCes recommandations ne remplacent pas un avis médical, il est important de consulter un professionnel de santé.</string>
+    <string name="cas4">Pour une perte de poids, vous pouvez privilégier ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
+    <string name="cas5">Pour une prise de masse, vous pouvez privilégier ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
+    <string name="cas6">Pour améliorer vos performances, privilégiez ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
+    <string name="cas7">Pour le maintien de la forme, vous pouvez privilégier ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
 </resources>

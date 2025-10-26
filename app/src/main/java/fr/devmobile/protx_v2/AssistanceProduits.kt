@@ -170,6 +170,8 @@ class AssistanceProduits : DialogFragment() {
         val container = requireView().findViewById<LinearLayout>(R.id.assistanceContainer)
         val inflater = LayoutInflater.from(requireContext())
 
+        container.removeAllViews()
+
         for (produit in produits) {
 
             val itemBinding = ProduitCaseBinding.inflate(inflater, container, false)

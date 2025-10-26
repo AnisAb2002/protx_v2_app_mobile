@@ -1,19 +1,12 @@
 package fr.devmobile.protx_v2
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import fr.devmobile.protx_v2.databinding.ActivityAssistanceBinding
-import fr.devmobile.protx_v2.databinding.ConnecterProfilBinding
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class Assistance : AppCompatActivity() {
 
@@ -83,15 +76,13 @@ class Assistance : AppCompatActivity() {
                 age <18 -> bundle.putString("cas", "1")
                 imc < 18.5 -> bundle.putString("cas", "2")
                 imc>30 -> bundle.putString("cas", "3")
-                else -> when(objectif){
-                    "Perte de poids" -> bundle.putString("cas", "4")
-                    "Prise de masse" -> bundle.putString("cas", "5")
-                    "Amélioration des performances" -> bundle.putString("cas", "6")
-                    "Maintien de la forme" -> bundle.putString("cas", "7")
-                }
+                objectif == getString(R.string.perte_poids) -> bundle.putString("cas", "4")
+                objectif == getString(R.string.prise_poids) -> bundle.putString("cas", "5")
+                objectif == getString(R.string.performance) -> bundle.putString("cas", "6")
+                objectif == getString(R.string.maintien) -> bundle.putString("cas", "7")
             }
-
         val fragment = AssistanceProduits().apply { arguments = bundle }
+
         fragment.show(supportFragmentManager, "AssistanceProduits")
     }
 }

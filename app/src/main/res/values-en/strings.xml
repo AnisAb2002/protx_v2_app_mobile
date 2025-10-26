@@ -84,12 +84,16 @@
     <string name="MdpIncorrect">Incorrect current password</string>
     <string name="retour_assistance">Assistance response</string>
     <string name="aucunProduitTrouve">No products were found. You can check out our other products or try again with different information.</string>
-    <string name="SelonIMC">Based on your BMI: </string>
+    <string name="SelonIMC">Your BMI: </string>
+    <string name="perte_poids">Weight loss</string>
+    <string name="prise_poids">Muscle gain</string>
+    <string name="performance">Performance improvement</string>
+    <string name="maintien">Stay in shape</string>
     <string name="cas1">We advise you not to consume these dietary supplements if you are under 18 years old. \n \n These products are formulated for adults and have not been tested for use in minors. Therefore, their safety and effectiveness cannot be guaranteed for your age group. \n \n We recommend that you consult a healthcare professional before taking any dietary supplement.</string>
-    <string name="cas2">cas2</string>
-    <string name="cas3">cas3</string>
-    <string name="cas4">cas4</string>
-    <string name="cas5">Cas5</string>
-    <string name="cas6">cas6</string>
-    <string name="cas7">Cas7</string>
+    <string name="cas2">Your BMI is below the normal range. We recommend choosing supplements that support weight gain.\n\nThese recommendations do not replace medical advice, it is important to consult a healthcare professional.</string>
+    <string name="cas3">Your BMI is above the normal range. We recommend choosing supplements that support weight loss.\n\nThese recommendations do not replace medical advice, it is important to consult a healthcare professional.</string>
+    <string name="cas4">For weight loss, you can choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice, it is important to consult a healthcare professional.</string>
+    <string name="cas5">For muscle gain, you can choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
+    <string name="cas6">To improve your performance, choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
+    <string name="cas7">For maintaining your fitness, you can choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
 </resources>
