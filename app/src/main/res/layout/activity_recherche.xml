@@ -59,6 +59,8 @@
                 android:ems="12"
                 android:autofillHints="Recherche"
                 android:textColor="@color/white"
+                android:background="@color/lightGrey"
+                android:paddingHorizontal="8dp"
                 android:inputType="text"
                 android:layout_marginEnd="15dp"/>
             <ImageButton

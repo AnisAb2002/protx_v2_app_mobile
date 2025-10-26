@@ -47,6 +47,8 @@
                     android:autofillHints=""
                     android:inputType="text"
                     android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
 
@@ -69,6 +71,8 @@
                     android:autofillHints=""
                     android:inputType="textPassword"
                     android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <com.google.android.material.button.MaterialButton

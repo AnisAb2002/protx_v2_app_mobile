@@ -1,12 +1,5 @@
 <resources>
 
-    <string-array name="objectifs_array">
-        <item>Weight loss</item>
-        <item>Muscle gain</item>
-        <item>Performance improvement</item>
-        <item>Stay in shape</item>
-    </string-array>
-
     <string-array name="langue_array">
         <item>French</item>
         <item>English</item>

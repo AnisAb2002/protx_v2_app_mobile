@@ -1,12 +1,4 @@
 <resources>
-
-    <string-array name="objectifs_array">
-        <item>Perte de poids</item>
-        <item>Prise de masse</item>
-        <item>Amélioration des performances</item>
-        <item>Maintien de la forme</item>
-    </string-array>
-
     <string-array name="langue_array">
         <item>Français</item>
         <item>Anglais</item>

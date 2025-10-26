@@ -81,6 +81,8 @@
                 android:layout_marginVertical="10dp"
                 android:ems="12"
                 android:layout_weight="2"
+                android:background="@color/lightGrey"
+                android:paddingHorizontal="8dp"
                 android:autofillHints="Age"
                 android:textColor="@color/white"
                 android:inputType="number" />
@@ -114,6 +116,8 @@
                 android:ems="12"
                 android:layout_weight="2"
                 android:textColor="@color/white"
+                android:background="@color/lightGrey"
+                android:paddingHorizontal="8dp"
                 android:autofillHints="Taille"
                 android:inputType="numberDecimal" />
         </LinearLayout>
@@ -144,6 +148,8 @@
                 android:ems="12"
                 android:layout_weight="2"
                 android:autofillHints="Poids"
+                android:background="@color/lightGrey"
+                android:paddingHorizontal="8dp"
                 android:textColor="@color/white"
                 android:inputType="numberDecimal" />
         </LinearLayout>
@@ -164,21 +170,43 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_weight="1"
-                android:labelFor="@id/objectifSpinner"
+                android:labelFor="@id/objectifRadio"
                 android:textColor="@color/white"
                 android:layout_gravity="center"/>
-            <Spinner
-                android:id="@+id/objectifSpinner"
+            <RadioGroup
+                android:id="@+id/objectifRadio"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginVertical="10dp"
-                android:ems="15"
-                android:layout_weight="10"
-                android:backgroundTint="@color/white"
-                android:entries="@array/objectifs_array"
-                android:spinnerMode="dropdown"
-                android:dropDownVerticalOffset="8dp"
-                />
+                android:layout_weight="2"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/pertePoidsRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/perte_poids"
+                    android:checked="true"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/prisePoidsRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prise_poids"
+                    android:textColor="@color/white" />
+                <RadioButton
+                    android:id="@+id/performanceRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/performance"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/maintienRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maintien"
+                    android:textColor="@color/white" />
+            </RadioGroup>
 
 
         </LinearLayout>

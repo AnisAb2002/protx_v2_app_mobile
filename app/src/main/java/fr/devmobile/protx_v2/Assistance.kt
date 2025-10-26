@@ -53,18 +53,25 @@ class Assistance : AppCompatActivity() {
         val ageTexte = binding.ageEditText.text.toString()
         val tailleTexte = binding.tailleEditText.text.toString()
         val poidsTexte = binding.poidsEditText.text.toString()
+        val objectifRadio = binding.objectifRadio.checkedRadioButtonId
 
-        if (ageTexte.isEmpty() || tailleTexte.isEmpty() || poidsTexte.isEmpty()) {
+
+        if (ageTexte.isEmpty() || tailleTexte.isEmpty() || poidsTexte.isEmpty() || (objectifRadio == -1)) {
             val message = getString(R.string.remplir)
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             return
         }
 
-
             val age = ageTexte.toInt()
             val taille = tailleTexte.toFloat() /100 //en m pas en cm
             val  poids = poidsTexte.toFloat()
-            val  objectif = binding.objectifSpinner.selectedItem.toString()
+            val objectif = when{
+                binding.pertePoidsRadio.isChecked -> binding.pertePoidsRadio.text.toString()
+                binding.prisePoidsRadio.isChecked -> binding.prisePoidsRadio.text.toString()
+                binding.performanceRadio.isChecked -> binding.performanceRadio.text.toString()
+                binding.maintienRadio.isChecked -> binding.maintienRadio.text.toString()
+                else -> ""
+            }
 
             val imc = poids/(taille*taille)
 

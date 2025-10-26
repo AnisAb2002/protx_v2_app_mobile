@@ -276,6 +276,9 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="0"
                         android:layout_weight="1"
+                        android:background="@color/lightGrey"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="5dp"
                         android:inputType="number"
                         android:textColor="@color/white"/>
 

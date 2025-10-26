@@ -43,7 +43,9 @@
                     android:autofillHints=""
                     android:inputType="text"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +65,9 @@
                     android:autofillHints=""
                     android:inputType="text"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,7 +87,9 @@
                     android:autofillHints=""
                     android:inputType="number"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,7 +109,9 @@
                     android:autofillHints=""
                     android:inputType="numberDecimal"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,7 +131,9 @@
                     android:autofillHints=""
                     android:inputType="numberDecimal"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,7 +153,9 @@
                     android:autofillHints=""
                     android:inputType="text"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="2dp"/>
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -163,8 +175,10 @@
                     android:layout_height="48dp"
                     android:autofillHints=""
                     android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
                     android:inputType="textPassword"
-                    android:layout_marginBottom="2dp"/>
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,8 +198,10 @@
                     android:layout_height="48dp"
                     android:autofillHints=""
                     android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
                     android:inputType="textPassword"
-                    android:layout_marginBottom="2dp"/>
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -210,7 +226,7 @@
             android:id="@+id/buttonIgnorer"
             android:layout_marginHorizontal="4dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="80dp"
             android:textColor="@color/grey"
             android:textSize="13sp"
             android:text="@string/fermer"/>
