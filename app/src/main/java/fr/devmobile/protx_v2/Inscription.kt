@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import fr.devmobile.protx_v2.data.BD
-import fr.devmobile.protx_v2.data.Utilisateur
 import fr.devmobile.protx_v2.databinding.ActivityInscriptionBinding
 import kotlinx.coroutines.launch
 
@@ -32,10 +30,12 @@ class Inscription : AppCompatActivity() {
 
             if (nom.isEmpty() || prenom.isEmpty() || age.isEmpty() || taille.isEmpty() || poids.isEmpty()
                 || identifiant.isEmpty() || mdp.isEmpty() || mdpConfirmation.isEmpty()){
-                Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+                val message = getString(R.string.remplir)
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
             else if (mdp != mdpConfirmation){
-                Toast.makeText(this, "La confirmation de mot de passe est incorrecte", Toast.LENGTH_SHORT).show()
+                val message = getString(R.string.MdpConfirmation)
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
             else {
                 val utilisateur = Utilisateur(
@@ -49,7 +49,8 @@ class Inscription : AppCompatActivity() {
                 )
                 lifecycleScope.launch {
                     utilisateurDao.inserer(utilisateur)
-                    Toast.makeText(this@Inscription, "Inscription réussie", Toast.LENGTH_SHORT).show()
+                    val message = getString(R.string.inscriptionReussi)
+                    Toast.makeText(this@Inscription, message, Toast.LENGTH_SHORT).show()
                 }
 
                 val intent = Intent(this, Connexion::class.java)

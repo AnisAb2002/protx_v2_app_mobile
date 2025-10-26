@@ -1,4 +1,4 @@
-package fr.devmobile.protx_v2.data
+package fr.devmobile.protx_v2
 
 import androidx.room.Dao
 import androidx.room.Insert

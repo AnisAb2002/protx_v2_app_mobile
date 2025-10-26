@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import fr.devmobile.protx_v2.data.BD
 import fr.devmobile.protx_v2.databinding.ActivityProfilBinding
 import fr.devmobile.protx_v2.databinding.ConnecterProfilBinding
 import fr.devmobile.protx_v2.databinding.InformationProfilBinding
@@ -53,7 +52,6 @@ class Profil : AppCompatActivity() {
 
 
         if (userId == -1) {
-            Toast.makeText(this@Profil, "Veuillez vous connectez", Toast.LENGTH_SHORT).show()
             val profil_container: LinearLayout = binding.informationProfilContainer
             val inflater = LayoutInflater.from(this)
 
@@ -91,15 +89,17 @@ class Profil : AppCompatActivity() {
                         modifierInfos.show(supportFragmentManager, "Modifier_Infos")
                     }
 
+                    utilisateurInfoContainer.boutonModifierMdp.setOnClickListener {
+                        val modifierMotdepasse = ModifierMotdepasse()
+                        modifierMotdepasse.show(supportFragmentManager, "ModifierMotdepasse")
+                    }
+
                     utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {
                         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
                         sharedPref.edit {
-                            clear() // ou editor.remove("id...")
+                            clear() // ou bien  editor.remove("id...")
                             apply()
                         }
-
-                        Toast.makeText(this@Profil, "Déconnexion réussie", Toast.LENGTH_SHORT).show()
-
                         startActivity(Intent(this@Profil, Connexion::class.java))
                         finish()
                     }
@@ -107,11 +107,8 @@ class Profil : AppCompatActivity() {
                 } else {
                     // utilisateur introuvable
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            this@Profil,
-                            "Utilisateur introuvable, veuillez vous reconnecter",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val message = getString(R.string.introuvable)
+                        Toast.makeText(this@Profil,"Utilisateur introuvable, veuillez vous reconnecter",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@Profil, Connexion::class.java))
                         finish()
                     }

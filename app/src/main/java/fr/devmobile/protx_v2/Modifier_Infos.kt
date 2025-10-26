@@ -11,7 +11,6 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import fr.devmobile.protx_v2.data.BD
 import kotlinx.coroutines.launch
 
 
@@ -52,7 +51,8 @@ class Modifier_Infos : DialogFragment() {
                         val nvPoids = poidsEditText.text.toString()
 
                         if (nvNom.isEmpty() || nvPrenom.isEmpty() || nvAge.isEmpty() || nvTaille.isEmpty() || nvPoids.isEmpty()){
-                            Toast.makeText(requireContext(), "Tous les champs doivent être remplis", Toast.LENGTH_SHORT).show()
+                            val message = getString(R.string.remplir)
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                         }
                         else {
                             viewLifecycleOwner.lifecycleScope.launch {
@@ -67,8 +67,8 @@ class Modifier_Infos : DialogFragment() {
                                 utilisateurDao.update(nvUtilisateur)
                             }
 
-
-                            Toast.makeText(requireContext(), "Informations mises à jour", Toast.LENGTH_SHORT).show()
+                            val message = getString(R.string.misejour)
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                             requireActivity().recreate()
                             dismiss()
                         }

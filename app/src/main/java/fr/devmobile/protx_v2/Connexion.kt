@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import fr.devmobile.protx_v2.data.BD
 import fr.devmobile.protx_v2.databinding.ActivityConnexionBinding
 import kotlinx.coroutines.launch
 import androidx.core.content.edit
@@ -28,8 +27,8 @@ class Connexion : AppCompatActivity() {
 
                 val utilisateur = utilisateurDao.authentifier(identifiant, motDePasse)
                 if (utilisateur != null) {
-
-                    Toast.makeText(this@Connexion,"Bienvenue ${utilisateur.prenom}",Toast.LENGTH_SHORT).show()
+                    val message = getString(R.string.bienvenue)
+                    Toast.makeText(this@Connexion,message + " ${utilisateur.prenom}",Toast.LENGTH_SHORT).show()
 
                     val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
                     sharedPref.edit {
@@ -42,7 +41,8 @@ class Connexion : AppCompatActivity() {
                     finish()
 
                 } else {
-                    Toast.makeText(this@Connexion, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
+                    val message = getString(R.string.identifiantIncorecte)
+                    Toast.makeText(this@Connexion, message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import fr.devmobile.protx_v2.data.BD
-import fr.devmobile.protx_v2.data.Produit
 import fr.devmobile.protx_v2.databinding.ActivityAccueilBinding
 import fr.devmobile.protx_v2.databinding.ProduitCaseBinding
 import kotlinx.coroutines.CoroutineScope
@@ -74,7 +72,20 @@ class Accueil : AppCompatActivity() {
             itemBinding.imageProduit.setImageResource(produit.image_src)
 
             itemBinding.btnApercu.setOnClickListener {
-                // Ex: ouvrir une page de détails
+                val fragment = ApercuProduit()
+
+                val bundle = Bundle().apply {
+                    putString("nom", produit.nom)
+                    putString("categorie", produit.categorie)
+                    putString("poids", produit.poids)
+                    putDouble("prix", produit.prix)
+                    putString("description", produit.description)
+                    putInt("image_src", produit.image_src)
+                    putString("composition",produit.composition)
+                    putString("portion",produit.portion)
+                }
+                fragment.arguments = bundle
+                fragment.show(supportFragmentManager, "ApercuProduit")
             }
 
             container.addView(itemBinding.root)

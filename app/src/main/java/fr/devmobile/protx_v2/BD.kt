@@ -1,10 +1,9 @@
-package fr.devmobile.protx_v2.data
+package fr.devmobile.protx_v2
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
-import fr.devmobile.protx_v2.R
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,7 +54,7 @@ private class DatabaseCallback(
             Produit(
                 id = 1,
                 nom = "Solid Mass",
-                poids= "1500g",
+                poids = "1500g",
                 categorie = "Gainer / Mass",
                 prix = 20.00,
                 description = "Solid Mass est un gainer puissant favorisant une prise de masse rapide, riche en glucides et protéines de qualité.",
@@ -66,7 +65,7 @@ private class DatabaseCallback(
             Produit(
                 id = 2,
                 nom = "Solid Mass",
-                poids= "5000g",
+                poids = "5000g",
                 categorie = "Gainer / Mass",
                 prix = 49.99,
                 description = "Solid Mass est un gainer puissant favorisant une prise de masse rapide, riche en glucides et protéines de qualité.",
@@ -77,7 +76,7 @@ private class DatabaseCallback(
             Produit(
                 id = 3,
                 nom = "Ultra Gainer",
-                poids= "1500g",
+                poids = "1500g",
                 categorie = "Gainer / Mass",
                 prix = 25.00,
                 description = "Ultra Gainer est un complément hypercalorique favorisant la prise de masse, riche en glucides et en protéines.",
@@ -88,7 +87,7 @@ private class DatabaseCallback(
             Produit(
                 id = 4,
                 nom = "Ultra Gainer",
-                poids= "5000g",
+                poids = "5000g",
                 categorie = "Gainer / Mass",
                 prix = 55.00,
                 description = "Ultra Gainer est un complément hypercalorique favorisant la prise de masse, riche en glucides et en protéines.",
@@ -101,7 +100,7 @@ private class DatabaseCallback(
             Produit(
                 id = 5,
                 nom = "Casein",
-                poids= "1000g",
+                poids = "1000g",
                 categorie = "Protéine Whey",
                 prix = 25.00,
                 description = "La caséine est idéale pour nourrir les muscles pendant la nuit et favoriser la récupération musculaire prolongée.",
@@ -112,7 +111,7 @@ private class DatabaseCallback(
             Produit(
                 id = 6,
                 nom = "Casein",
-                poids= "2000g",
+                poids = "2000g",
                 categorie = "Protéine Whey",
                 prix = 45.00,
                 description = "La caséine est idéale pour nourrir les muscles pendant la nuit et favoriser la récupération musculaire prolongée.",
@@ -123,7 +122,7 @@ private class DatabaseCallback(
             Produit(
                 id = 7,
                 nom = "Hydrotech",
-                poids= "1000g",
+                poids = "1000g",
                 categorie = "Protéine Whey",
                 prix = 25.00,
                 description = "Hydrotech est une protéine de haute qualité, riche en hydrolysats, aide à la récupération musculaire optimale.",
@@ -134,7 +133,7 @@ private class DatabaseCallback(
             Produit(
                 id = 8,
                 nom = "Isotech",
-                poids= "4000g",
+                poids = "4000g",
                 categorie = "Protéine Whey",
                 prix = 95.00,
                 description = "Isotech est une protéine de lactosérum pure et rapidement assimilée, idéale pour soutenir la récupération musculaire.",
@@ -147,7 +146,7 @@ private class DatabaseCallback(
             Produit(
                 id = 9,
                 nom = "Créatine",
-                poids= "350g",
+                poids = "350g",
                 categorie = "Créatine / Force",
                 prix = 20.00,
                 description = "La créatine est un complément naturel utilisé pour améliorer la performance physique. Elle favorise aussi la prise de masse musculaire.",
@@ -158,7 +157,7 @@ private class DatabaseCallback(
             Produit(
                 id = 10,
                 nom = "Amino EAA",
-                poids= "400g",
+                poids = "400g",
                 categorie = "Créatine / Force",
                 prix = 20.00,
                 description = "Amino EAA est un mélange d’acides aminés essentiels qui améliore l’endurance et favorise la croissance musculaire.",
@@ -169,7 +168,7 @@ private class DatabaseCallback(
             Produit(
                 id = 11,
                 nom = "L-Glutamine",
-                poids= "400g",
+                poids = "400g",
                 categorie = "Créatine / Force",
                 prix = 20.00,
                 description = "La L-Glutamine est un acide aminé essentiel à la récupération musculaire, qui aide à réduire la fatigue et soutient le système immunitaire après l’entraînement.",
@@ -180,7 +179,7 @@ private class DatabaseCallback(
             Produit(
                 id = 12,
                 nom = "Flex Shield",
-                poids= "375g",
+                poids = "375g",
                 categorie = "Créatine / Force",
                 prix = 25.00,
                 description = "Flex Shield est conçu pour protéger et renforcer les articulations et soutenir les entraînements intensifs.",
@@ -193,7 +192,7 @@ private class DatabaseCallback(
             Produit(
                 id = 13,
                 nom = "Savage Pre-Workout",
-                poids= "20x200ml",
+                poids = "20x200ml",
                 categorie = "Énergie",
                 prix = 10.00,
                 description = "Savage Pre-Workout est une boisson énergisante conçue pour booster l'énergie et l'endurance avant l'entraînement.",
@@ -204,7 +203,7 @@ private class DatabaseCallback(
             Produit(
                 id = 14,
                 nom = "EAA",
-                poids= "12x330ml",
+                poids = "12x330ml",
                 categorie = "Énergie",
                 prix = 8.00,
                 description = "La boisson EAA est une formule riche en citrulline pour soutenir la circulation sanguine et pour booster l'énergie.",
@@ -215,7 +214,7 @@ private class DatabaseCallback(
             Produit(
                 id = 15,
                 nom = "L-Carnitine",
-                poids= "12x500ml",
+                poids = "12x500ml",
                 categorie = "Énergie",
                 prix = 8.00,
                 description = "La boisson L-Carnitine aide à optimiser la combustion des graisses et à améliorer l'endurance pendant l'exercice.",
@@ -226,7 +225,7 @@ private class DatabaseCallback(
             Produit(
                 id = 16,
                 nom = "Carbo fuel",
-                poids= "1000g",
+                poids = "1000g",
                 categorie = "Énergie",
                 prix = 9.50,
                 description = "Carbo Fuel est un complément à base de glucides, idéale pour soutenir l'endurance et la performance.",

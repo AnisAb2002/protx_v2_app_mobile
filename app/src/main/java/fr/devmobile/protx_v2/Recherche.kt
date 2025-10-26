@@ -1,21 +1,14 @@
 package fr.devmobile.protx_v2
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import fr.devmobile.protx_v2.data.BD
 import fr.devmobile.protx_v2.databinding.ActivityRechercheBinding
 import fr.devmobile.protx_v2.databinding.AucunProduitTrouveBinding
-import fr.devmobile.protx_v2.databinding.ConnecterProfilBinding
 import fr.devmobile.protx_v2.databinding.ProduitCaseBinding
 import fr.devmobile.protx_v2.databinding.ProduitsTrouvesBinding
 import kotlinx.coroutines.launch
@@ -72,9 +65,21 @@ class Recherche : AppCompatActivity() {
                             itemBinding.imageProduit.setImageResource(produit.image_src)
 
                             itemBinding.btnApercu.setOnClickListener {
-                                // Ex: ouvrir une page de détails
-                            }
+                                val fragment = ApercuProduit()
 
+                                val bundle = Bundle().apply {
+                                    putString("nom", produit.nom)
+                                    putString("categorie", produit.categorie)
+                                    putString("poids", produit.poids)
+                                    putDouble("prix", produit.prix)
+                                    putString("description", produit.description)
+                                    putInt("image_src", produit.image_src)
+                                    putString("composition",produit.composition)
+                                    putString("portion",produit.portion)
+                                }
+                                fragment.arguments = bundle
+                                fragment.show(supportFragmentManager, "ApercuProduit")
+                            }
                             produit_container.addView(itemBinding.root)
                         }
                     }

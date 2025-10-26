@@ -59,4 +59,27 @@
     <string name="rechercheVide">Le champ de saisie est vide</string>
     <string name="rienTrouve">Oups ! On n’a rien trouvé. Utilisez d’autres mots.</string>
     <string name="recherchebouton">rechercheBouton</string>
+    <string name="categorie">Catégorie</string>
+    <string name="prix">Prix</string>
+    <string name="format">Format</string>
+    <string name="description">Description</string>
+    <string name="portion">Portion</string>
+    <string name="composition">Composition</string>
+    <string name="bare">Bare</string>
+    <string name="ajouter_au_panier">Ajouter au panier</string>
+    <string name="plus">+</string>
+    <string name="moins">-</string>
+    <string name="choixQnt">Saisissez la quantité</string>
+    <string name="produitAjoutePanier">Le produit a été ajouté au panier</string>
+    <string name="bienvenue">Bienvenue</string>
+    <string name="identifiantIncorecte">Identifiants incorrects</string>
+    <string name="MdpConfirmation">La confirmation de mot de passe est incorrecte</string>
+    <string name="inscriptionReussi">Inscription réussie</string>
+    <string name="misejour">Informations mises à jour</string>
+    <string name="introuvable">Utilisateur introuvable, veuillez vous reconnecter</string>
+    <string name="modifier_mon_mot_de_passe">Modifier mon mot de passe</string>
+    <string name="mot_de_passe_actuel">Mot de passe actuel</string>
+    <string name="nouveau_mot_de_passe">Nouveau mot de passe</string>
+    <string name="miseajour_mot_de_passe">Mot de passe modifié</string>
+    <string name="MdpIncorrect">Mot de passe acutel incorrect</string>
 </resources>
