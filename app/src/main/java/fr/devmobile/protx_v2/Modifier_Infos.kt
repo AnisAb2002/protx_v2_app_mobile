@@ -28,7 +28,7 @@ class Modifier_Infos : DialogFragment() {
         val boutonConfirmer = view.findViewById<Button>(R.id.boutonConfirmer)
 
         val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", 0)
-        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
+        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
 
         val utilisateurDao = BD.getDatabase(requireContext()).utilisateurDao()
 
@@ -67,8 +67,7 @@ class Modifier_Infos : DialogFragment() {
                                 utilisateurDao.update(nvUtilisateur)
                             }
 
-                            val message = getString(R.string.misejour)
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), getString(R.string.misejour), Toast.LENGTH_SHORT).show()
                             requireActivity().recreate()
                             dismiss()
                         }

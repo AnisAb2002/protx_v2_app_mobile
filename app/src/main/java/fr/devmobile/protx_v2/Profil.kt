@@ -34,17 +34,15 @@ class Profil : AppCompatActivity() {
         }
 
         binding.boutonPropos.setOnClickListener {
-            val fragmentPropos = Apropos()
-            fragmentPropos.show(supportFragmentManager, "Apropos")
+            Apropos().show(supportFragmentManager, "Apropos")
         }
 
         binding.boutonModifierLangue.setOnClickListener {
-            val fragmentLangue = Changer_Langue()
-            fragmentLangue.show(supportFragmentManager, "Changer_Langue")
+            Changer_Langue().show(supportFragmentManager, "Changer_Langue")
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
+        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
         val langue = sharedPref.getString("langue","fr")
 
         if(langue == "fr") {
@@ -90,17 +88,14 @@ class Profil : AppCompatActivity() {
                     utilisateurInfoContainer.poidsText.text = utilisateur.poids.toString()
 
                     utilisateurInfoContainer.boutonModifierInfo.setOnClickListener {
-                        val modifierInfos = Modifier_Infos()
-                        modifierInfos.show(supportFragmentManager, "Modifier_Infos")
+                        Modifier_Infos().show(supportFragmentManager, "Modifier_Infos")
                     }
 
                     utilisateurInfoContainer.boutonModifierMdp.setOnClickListener {
-                        val modifierMotdepasse = ModifierMotdepasse()
-                        modifierMotdepasse.show(supportFragmentManager, "ModifierMotdepasse")
+                        ModifierMotdepasse().show(supportFragmentManager, "ModifierMotdepasse")
                     }
 
                     utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {
-                        val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
                         sharedPref.edit {
                             clear() // ou bien  editor.remove("id...")
                             apply()
@@ -109,11 +104,14 @@ class Profil : AppCompatActivity() {
                         finish()
                     }
 
+                    utilisateurInfoContainer.boutonSupprimer.setOnClickListener {
+                        SupprimerProfil().show(supportFragmentManager, "SupprimerProfil")
+                    }
+
                 } else {
                     // utilisateur introuvable
                     withContext(Dispatchers.Main) {
-                        val message = getString(R.string.introuvable)
-                        Toast.makeText(this@Profil,message,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Profil,getString(R.string.introuvable),Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@Profil, Connexion::class.java))
                         finish()
                     }
@@ -121,5 +119,4 @@ class Profil : AppCompatActivity() {
             }
         }
     }
-
 }

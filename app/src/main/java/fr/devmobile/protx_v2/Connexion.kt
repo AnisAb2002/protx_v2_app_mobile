@@ -26,24 +26,23 @@ class Connexion : AppCompatActivity() {
             lifecycleScope.launch {
 
                 val utilisateur = utilisateurDao.authentifier(identifiant, motDePasse)
-                if (utilisateur != null) {
-                    val message = getString(R.string.bienvenue)
-                    Toast.makeText(this@Connexion,message + " ${utilisateur.prenom}",Toast.LENGTH_SHORT).show()
+                if (utilisateur == null) {
+                    Toast.makeText(this@Connexion, getString(R.string.identifiantIncorecte), Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this@Connexion, getString(R.string.bienvenue) + " ${utilisateur.prenom}",Toast.LENGTH_SHORT).show()
 
                     val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
                     sharedPref.edit {
-                        putInt("donnees_utilisateur", utilisateur.idUtilisateur)
+                        putInt("idUtilisateur", utilisateur.idUtilisateur)
+                        putString("identifiant", utilisateur.identifiant)
                     }
 
                     val intent = Intent(this@Connexion, Accueil::class.java)
 
                     startActivity(intent)
                     finish()
-
-                } else {
-                    val message = getString(R.string.identifiantIncorecte)
-                    Toast.makeText(this@Connexion, message, Toast.LENGTH_SHORT).show()
-                }
+                    }
             }
         }
         binding.buttonInscription.setOnClickListener {

@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 
 class AssistanceProduits : DialogFragment() {
 
-    @SuppressLint("UseGetLayoutInflater")
+    @SuppressLint("UseGetLayoutInflater", "SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_assistance_produits, container, false)
 
@@ -32,23 +32,22 @@ class AssistanceProduits : DialogFragment() {
 
         val db = BD.getDatabase(requireContext())
         val produitDao = db.produitDao()
+        val imc = arguments?.getString("imc")
 
         when(cas){
             "1"->{//moins de 18 ans
                 descriptionText.setText(R.string.cas1)
             }
             "2"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas2)
-                descriptionText.text = message
+
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas2)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsPrisePoids()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -56,17 +55,14 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
             "3"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas3)
-                descriptionText.text = message
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas3)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsPertePoids()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -74,17 +70,14 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
             "4"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas4)
-                descriptionText.text = message
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas4)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsPertePoidsLeger()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -92,17 +85,14 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
             "5"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas5)
-                descriptionText.text = message
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas5)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsPrisePoids()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -110,17 +100,14 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
             "6"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas6)
-                descriptionText.text = message
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas6)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsPerformance()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -128,17 +115,14 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
             "7"->{
-                val imc = arguments?.getString("imc")
-                val message = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas7)
-                descriptionText.text = message
+                descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas7)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produits = produitDao.getProduitsForme()
 
-                    withContext(Dispatchers.Main) { // UI thread
+                    withContext(Dispatchers.Main) {
                         if (produits.isEmpty()) {
-                            val message = getString(R.string.aucunProduitTrouve)
-                            descriptionText.text = message
+                            descriptionText.text = getString(R.string.aucunProduitTrouve)
                         } else {
                             afficherProduits(produits)
                         }
@@ -146,8 +130,6 @@ class AssistanceProduits : DialogFragment() {
                 }
             }
         }
-
-
         return view
     }
 
@@ -169,8 +151,6 @@ class AssistanceProduits : DialogFragment() {
 
         val container = requireView().findViewById<LinearLayout>(R.id.assistanceContainer)
         val inflater = LayoutInflater.from(requireContext())
-
-        container.removeAllViews()
 
         for (produit in produits) {
 

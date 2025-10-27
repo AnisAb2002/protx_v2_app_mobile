@@ -1,6 +1,7 @@
 package fr.devmobile.protx_v2
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -20,6 +21,9 @@ interface Utilisateur_dao {
 
     @Update
     suspend fun update(utilisateur: Utilisateur)
+
+    @Delete
+    suspend fun supprimerUtilisateur(utilisateur: Utilisateur)
 
     @Query("DELETE FROM utilisateurs")
     suspend fun supprimerTous()

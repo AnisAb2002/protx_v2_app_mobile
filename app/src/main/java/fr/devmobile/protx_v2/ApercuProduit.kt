@@ -25,7 +25,7 @@ class ApercuProduit : DialogFragment() {
             dismiss()
         }
 
-        // Récupérer les arguments de Accueil
+        // Récupérer les arguments
         val nom = arguments?.getString("nom")
         val categorie = arguments?.getString("categorie")
         val poids = arguments?.getString("poids")
@@ -44,7 +44,7 @@ class ApercuProduit : DialogFragment() {
         val portionPorduit = view.findViewById<TextView>(R.id.portionProduitApercu)
         val compositionProduit = view.findViewById<TextView>(R.id.compositionProduitApercu)
 
-        // Affecte les données
+        // Affecter les données
         nomProduit.text = nom
         categorieProduit.text = categorie
         poidsProduit.text = poids
@@ -79,15 +79,13 @@ class ApercuProduit : DialogFragment() {
         ajouterPanierBoutton.setOnClickListener {
             val qnt = qntEditText.text.toString().toInt()
             if (qnt==0){
-                val message = getString(R.string.choixQnt)
-                Toast.makeText(requireContext(),message,  Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),getString(R.string.choixQnt),  Toast.LENGTH_SHORT).show()
             }
             else{
                 //ajout au panier
 
 
-                val message = getString(R.string.produitAjoutePanier)
-                Toast.makeText(requireContext(),message,  Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
             }
         }
 

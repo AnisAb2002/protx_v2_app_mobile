@@ -74,6 +74,8 @@
     <string name="nouveau_mot_de_passe">Nouveau mot de passe</string>
     <string name="miseajour_mot_de_passe">Mot de passe modifié</string>
     <string name="MdpIncorrect">Mot de passe acutel incorrect</string>
+    <string name="mdpIncorrect">Mot de passe incorrect</string>
+    <string name="existant">Il existe un utilisteur cet identifiant</string>
     <string name="retour_assistance">Retour d’assistance</string>
     <string name="aucunProduitTrouve">Nous n’avons trouvé aucun produit. Vous pouvez consulter nos autres produits ou réessayer avec des informations différentes.</string>
     <string name="SelonIMC">Votre IMC :</string>
@@ -99,4 +101,7 @@
         \n\n\n\nProtX s\'inscrit dans la continuité d’un projet de développement web réalisé dans le cadre du projet de fin d\'études pour l\'année universitaire 2024/2025.
         \n\nLe code source est disponible sur GitHub : AnisAb2002.
         \n\n\n\nL\'application a été conçue et développée par Anis ABDAT, étudiant en 3ème année de Licence Informatique – Informatiques Systèmes Embarqués et Interactifs à l\'Université Paris 8 Vincennes – Saint-Denis, sous l\'encadrement de M. Andrew O\'SHEI.</string>
+    <string name="supprimer_profil">Supprimer mon profil</string>
+    <string name="vouloir_supprimer">Êtes-vous sûr de vouloir supprimer votre profil ?\nCette action est irréversible… et cela nous briserait le cœur</string>
+    <string name="annuler">Annuler</string>
 </resources>

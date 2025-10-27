@@ -75,6 +75,8 @@
     <string name="nouveau_mot_de_passe">New password</string>
     <string name="miseajour_mot_de_passe">Password changed</string>
     <string name="MdpIncorrect">Incorrect current password</string>
+    <string name="mdpIncorrect">Wrong password</string>
+    <string name="existant">A user with this identifier already exists.</string>
     <string name="retour_assistance">Assistance response</string>
     <string name="aucunProduitTrouve">No products were found. You can check out our other products or try again with different information.</string>
     <string name="SelonIMC">Your BMI: </string>
@@ -100,5 +102,8 @@
         \n\n\n\nProtX is a continuation of a web development project carried out as part of the final year project for the 2024/2025 academic year.
         \n\nThe source code is available on GitHub: AnisAb2002.
         \n\n\n\nThe application was designed and developed by Anis ABDAT, third-year Computer Science student – Embedded and Interactive Systems at Paris 8 University Vincennes – Saint-Denis, under the supervision of Mr. Andrew O\'SHEI.</string>
+    <string name="supprimer_profil">Delete my profile</string>
+    <string name="vouloir_supprimer">Are you sure you want to delete your profile?\nThis action is irreversible… and it would break our heart.</string>
+    <string name="annuler">Cancel</string>
 
 </resources>

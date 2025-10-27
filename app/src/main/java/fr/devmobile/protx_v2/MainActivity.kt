@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val userId = sharedPref.getInt("donnees_utilisateur", -1)
+        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
 
-        if (userId != -1) {
+        if (idUtilisateur != -1) {
             val intent = Intent(this, Accueil::class.java)
             startActivity(intent)
             finish()
@@ -47,9 +47,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
-
 
     fun setLocale(context: Context, langue: String){
         val locale = Locale(langue)
@@ -60,6 +57,4 @@ class MainActivity : AppCompatActivity() {
 
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
-
-
 }

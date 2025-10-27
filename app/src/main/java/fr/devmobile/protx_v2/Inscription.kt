@@ -19,23 +19,21 @@ class Inscription : AppCompatActivity() {
         val utilisateurDao = BD.getDatabase(this).utilisateurDao()
 
         binding.buttonInscription.setOnClickListener {
-            val nom = binding.nomEditText.text.toString()
-            val prenom = binding.prenomEditText.text.toString()
-            val age = binding.ageEditText.text.toString()
-            val taille = binding.tailleEditText.text.toString()
-            val poids = binding.poidsEditText.text.toString()
-            val identifiant = binding.identifiantEditText.text.toString()
-            val mdp = binding.mdpEditText.text.toString()
-            val mdpConfirmation = binding.mdpConfirmationEditText.text.toString()
+            val nom = binding.nomEditText.text.toString().trim()
+            val prenom = binding.prenomEditText.text.toString().trim()
+            val age = binding.ageEditText.text.toString().trim()
+            val taille = binding.tailleEditText.text.toString().trim()
+            val poids = binding.poidsEditText.text.toString().trim()
+            val identifiant = binding.identifiantEditText.text.toString().trim()
+            val mdp = binding.mdpEditText.text.toString().trim()
+            val mdpConfirmation = binding.mdpConfirmationEditText.text.toString().trim()
 
             if (nom.isEmpty() || prenom.isEmpty() || age.isEmpty() || taille.isEmpty() || poids.isEmpty()
                 || identifiant.isEmpty() || mdp.isEmpty() || mdpConfirmation.isEmpty()){
-                val message = getString(R.string.remplir)
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.remplir), Toast.LENGTH_SHORT).show()
             }
             else if (mdp != mdpConfirmation){
-                val message = getString(R.string.MdpConfirmation)
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.MdpConfirmation), Toast.LENGTH_SHORT).show()
             }
             else {
                 val utilisateur = Utilisateur(
@@ -48,23 +46,22 @@ class Inscription : AppCompatActivity() {
                     poids = poids.toFloat()
                 )
                 lifecycleScope.launch {
-                    utilisateurDao.inserer(utilisateur)
-                    val message = getString(R.string.inscriptionReussi)
-                    Toast.makeText(this@Inscription, message, Toast.LENGTH_SHORT).show()
+                    val utilisateurExistant = utilisateurDao.authentifier(identifiant,mdp)
+                    if(utilisateurExistant == null){
+                        utilisateurDao.inserer(utilisateur)
+                        Toast.makeText(this@Inscription, getString(R.string.inscriptionReussi), Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(this@Inscription, getString(R.string.existant), Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
                 }
 
                 val intent = Intent(this, Connexion::class.java)
                 startActivity(intent)
                 finish()
             }
-
-
         }
-
-
-
-
-
         binding.buttonIgnorer.setOnClickListener {
             val intent = Intent(this, Connexion::class.java)
             startActivity(intent)

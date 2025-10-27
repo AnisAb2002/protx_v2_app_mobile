@@ -24,7 +24,7 @@ class Assistance : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
+        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
         if (idUtilisateur != -1) {
             //Conecté
             //remplissage des EditText avec les informations qu'on a déja sur l'utilisateur

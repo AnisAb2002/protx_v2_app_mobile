@@ -24,7 +24,7 @@ class ModifierMotdepasse : DialogFragment() {
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
 
         val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", 0)
-        val idUtilisateur = sharedPref.getInt("donnees_utilisateur", -1)
+        val identifiant = sharedPref.getString("identifiant", " ").toString()
 
         val utilisateurDao = BD.getDatabase(requireContext()).utilisateurDao()
 
@@ -34,33 +34,27 @@ class ModifierMotdepasse : DialogFragment() {
             val mdpConfirmation = mdpConfirmationEditText.text.toString()
 
             if (ancienMdp.isEmpty() ||nvMdp.isEmpty() || mdpConfirmation.isEmpty()){
-                val message = getString(R.string.remplir)
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.remplir), Toast.LENGTH_SHORT).show()
             }
             else if(nvMdp != mdpConfirmation){
-                val message = getString(R.string.MdpConfirmation)
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.MdpConfirmation), Toast.LENGTH_SHORT).show()
             }
-            else if (idUtilisateur != -1){
+            else if (identifiant != " "){
                 viewLifecycleOwner.lifecycleScope.launch {
-                    val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
-                    val identifiant = utilisateur!!.identifiant
                     val utilisateurVerifie = utilisateurDao.authentifier(identifiant, ancienMdp)
 
                     if (utilisateurVerifie != null) {
-                        val nvUtilisateur = utilisateur.copy(
+                        val nvUtilisateur = utilisateurVerifie.copy(
                             motDePasse = nvMdp,
                             )
                         utilisateurDao.update(nvUtilisateur)
 
-                        val message = getString(R.string.miseajour_mot_de_passe)
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.miseajour_mot_de_passe), Toast.LENGTH_SHORT).show()
                         requireActivity().recreate()
                         dismiss()
                     }
                     else{
-                        val message = getString(R.string.MdpIncorrect)
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(),getString(R.string.MdpIncorrect), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -69,7 +63,6 @@ class ModifierMotdepasse : DialogFragment() {
         boutonRetour.setOnClickListener {
             dismiss()
         }
-
 
         return view
     }

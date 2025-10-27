@@ -27,14 +27,13 @@ class Recherche : AppCompatActivity() {
             finish()
         }
         binding.rechercheBouton.setOnClickListener {
-            val rechercheEditText = binding.rechercheEditText.text
+            val rechercheEditText = binding.rechercheEditText.text.toString()
 
             if(rechercheEditText.isEmpty()){
-                val message = getString(R.string.rechercheVide)
-                Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.rechercheVide),Toast.LENGTH_SHORT).show()
             }
             else{
-                val texteRecherche = rechercheEditText.toString().lowercase().trim()
+                val texteRecherche = rechercheEditText.lowercase().trim()
 
                 val bd = BD.getDatabase(this)
                 val produitDao = bd.produitDao()

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".SupprimerProfil"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_up"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="40dp"
+        tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/retourBouton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/grey"
+            android:contentDescription="@string/bouton_retourner"
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:text="@string/supprimer_profil"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vouloir_supprimer"
+                android:justificationMode="inter_word"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="@color/white" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/rechercheVide"
+                app:srcCompat="@drawable/sad_24"
+                app:tint="@color/white"
+                android:backgroundTint="@color/grey"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/mot_de_passe"
+                android:labelFor="@+id/mdpEditText"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:id="@+id/mdpEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints=""
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:background="@color/lightGrey"
+                android:paddingHorizontal="8dp"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:id="@+id/boutonAnnuler"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:text="@string/annuler"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:id="@+id/boutonConfirmer"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:text="@string/supprimer_profil"/>
+
+    </LinearLayout>
+
+</LinearLayout>

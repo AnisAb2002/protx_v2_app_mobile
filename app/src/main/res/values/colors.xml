@@ -5,4 +5,5 @@
     <color name="grey">#222222</color>
     <color name="lightGrey">#333333</color>
     <color name="lightGreyTransparent">#40333333</color>
+    <color name="red">#FF4E4E</color>
 </resources>
