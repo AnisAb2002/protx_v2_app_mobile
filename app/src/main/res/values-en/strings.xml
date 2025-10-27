@@ -89,4 +89,16 @@
     <string name="cas5">For muscle gain, you can choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
     <string name="cas6">To improve your performance, choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
     <string name="cas7">For maintaining your fitness, you can choose these supplements that support your goal.\n\nThese recommendations do not replace medical advice; it is important to consult a healthcare professional.</string>
+    <string name="propos_de_nous">About us</string>
+
+    <string name="descriptionApp">
+        ProtX is a mobile application developed as part of an academic project.
+        \n\nIts purpose is to provide a practical and functional solution for presenting dietary supplements intended for athletes.
+        \n\n\n\nThis project is non-profit, and any resemblance to existing companies is purely coincidental.
+        \n\nThe dietary supplements featured in the application are products marketed by the Algerian company GoldenBody.
+        \n\nThe images and information related to these products are reused solely for educational and non-commercial purposes.
+        \n\n\n\nProtX is a continuation of a web development project carried out as part of the final year project for the 2024/2025 academic year.
+        \n\nThe source code is available on GitHub: AnisAb2002.
+        \n\n\n\nThe application was designed and developed by Anis ABDAT, third-year Computer Science student – Embedded and Interactive Systems at Paris 8 University Vincennes – Saint-Denis, under the supervision of Mr. Andrew O\'SHEI.</string>
+
 </resources>

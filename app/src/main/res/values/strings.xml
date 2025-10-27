@@ -88,4 +88,15 @@
     <string name="cas5">Pour une prise de masse, vous pouvez privilégier ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
     <string name="cas6">Pour améliorer vos performances, privilégiez ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
     <string name="cas7">Pour le maintien de la forme, vous pouvez privilégier ces compléments qui soutiennent votre objectif.\n\nCes recommandations ne remplacent pas un avis médical il est important de consulter un professionnel de santé.</string>
+    <string name="propos_de_nous">À propos de nous</string>
+
+    <string name="descriptionApp">
+        ProtX est une application mobile développée dans le cadre d\'un projet académique.
+        \n\nSon objectif est de proposer une solution pratique et fonctionnelle permettant la présentation de compléments alimentaires destinés aux athlètes.
+        \n\n\n\nCe projet n\'a aucun but lucratif, et toute ressemblance avec des entreprises existantes est purement fortuite.
+        \n\nLes compléments alimentaires présentés dans l\'application sont des produits commercialisés par l\'entreprise algérienne GoldenBody.
+        \n\nLes images et informations associées à ces produits sont réutilisées exclusivement à des fins pédagogiques et non commerciales.
+        \n\n\n\nProtX s\'inscrit dans la continuité d’un projet de développement web réalisé dans le cadre du projet de fin d\'études pour l\'année universitaire 2024/2025.
+        \n\nLe code source est disponible sur GitHub : AnisAb2002.
+        \n\n\n\nL\'application a été conçue et développée par Anis ABDAT, étudiant en 3ème année de Licence Informatique – Informatiques Systèmes Embarqués et Interactifs à l\'Université Paris 8 Vincennes – Saint-Denis, sous l\'encadrement de M. Andrew O\'SHEI.</string>
 </resources>

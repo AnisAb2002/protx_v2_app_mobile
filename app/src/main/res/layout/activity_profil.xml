@@ -110,6 +110,17 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 android:text="@string/changer_la_langue"/>
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:id="@+id/boutonPropos"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="3dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:text="@string/propos_de_nous"/>
 
         </LinearLayout>
 

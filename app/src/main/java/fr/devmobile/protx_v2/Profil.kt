@@ -33,6 +33,11 @@ class Profil : AppCompatActivity() {
             finish()
         }
 
+        binding.boutonPropos.setOnClickListener {
+            val fragmentPropos = Apropos()
+            fragmentPropos.show(supportFragmentManager, "Apropos")
+        }
+
         binding.boutonModifierLangue.setOnClickListener {
             val fragmentLangue = Changer_Langue()
             fragmentLangue.show(supportFragmentManager, "Changer_Langue")
@@ -108,7 +113,7 @@ class Profil : AppCompatActivity() {
                     // utilisateur introuvable
                     withContext(Dispatchers.Main) {
                         val message = getString(R.string.introuvable)
-                        Toast.makeText(this@Profil,"Utilisateur introuvable, veuillez vous reconnecter",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Profil,message,Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@Profil, Connexion::class.java))
                         finish()
                     }
