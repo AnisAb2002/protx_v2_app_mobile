@@ -1,10 +1,12 @@
 package fr.devmobile.protx_v2
 
+import com.google.firebase.Firebase
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
 import fr.devmobile.protx_v2.databinding.ActivityMainBinding
 import java.util.Locale
 
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val langue = prefs.getString("langue", "fr")
         setLocale(this, langue!!)
 
+        FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)
 

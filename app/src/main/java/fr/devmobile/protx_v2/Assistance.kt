@@ -24,7 +24,9 @@ class Assistance : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+        val langue = sharedPref.getString("langue","fr")
         val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
+
         if (idUtilisateur != -1) {
             //Conecté
             //remplissage des EditText avec les informations qu'on a déja sur l'utilisateur
@@ -42,13 +44,13 @@ class Assistance : AppCompatActivity() {
         }
 
         binding.envoyerButton.setOnClickListener {
-            chercerProduit()
+            chercerProduit(langue.toString())
         }
 
     }
 
     @SuppressLint("DefaultLocale")
-    private fun chercerProduit() {
+    private fun chercerProduit(langue : String) {
 
         val ageTexte = binding.ageEditText.text.toString()
         val tailleTexte = binding.tailleEditText.text.toString()
@@ -62,32 +64,34 @@ class Assistance : AppCompatActivity() {
             return
         }
 
-            val age = ageTexte.toInt()
-            val taille = tailleTexte.toFloat() /100 //en m pas en cm
-            val  poids = poidsTexte.toFloat()
-            val objectif = when{
-                binding.pertePoidsRadio.isChecked -> binding.pertePoidsRadio.text.toString()
-                binding.prisePoidsRadio.isChecked -> binding.prisePoidsRadio.text.toString()
-                binding.performanceRadio.isChecked -> binding.performanceRadio.text.toString()
-                binding.maintienRadio.isChecked -> binding.maintienRadio.text.toString()
-                else -> ""
-            }
+        val age = ageTexte.toInt()
+        val taille = tailleTexte.toFloat() /100 //en m pas en cm
+        val  poids = poidsTexte.toFloat()
+        val objectif = when{
+            binding.pertePoidsRadio.isChecked -> binding.pertePoidsRadio.text.toString()
+            binding.prisePoidsRadio.isChecked -> binding.prisePoidsRadio.text.toString()
+            binding.performanceRadio.isChecked -> binding.performanceRadio.text.toString()
+            binding.maintienRadio.isChecked -> binding.maintienRadio.text.toString()
+            else -> binding.pertePoidsRadio.text.toString()
+        }
 
-            val imc = poids/(taille*taille)
+        val imc = poids/(taille*taille)
 
-            val bundle = Bundle().apply {
-                putString("imc", String.format("%.2f",imc))
-            }
+        val bundle = Bundle().apply {
+            putString("imc", String.format("%.2f",imc))
+            putString("langue",langue)
+        }
 
-            when {
-                age <18 -> bundle.putString("cas", "1")
-                imc < 18.5 -> bundle.putString("cas", "2")
-                imc>30 -> bundle.putString("cas", "3")
-                objectif == getString(R.string.perte_poids) -> bundle.putString("cas", "4")
-                objectif == getString(R.string.prise_poids) -> bundle.putString("cas", "5")
-                objectif == getString(R.string.performance) -> bundle.putString("cas", "6")
-                objectif == getString(R.string.maintien) -> bundle.putString("cas", "7")
-            }
+        when {
+            age <18 -> bundle.putString("cas", "1")
+            imc < 18.5 -> bundle.putString("cas", "2")
+            imc>30 -> bundle.putString("cas", "3")
+            objectif == getString(R.string.perte_poids) -> bundle.putString("cas", "4")
+            objectif == getString(R.string.prise_poids) -> bundle.putString("cas", "5")
+            objectif == getString(R.string.performance) -> bundle.putString("cas", "6")
+            objectif == getString(R.string.maintien) -> bundle.putString("cas", "7")
+        }
+
         val fragment = AssistanceProduits().apply { arguments = bundle }
 
         fragment.show(supportFragmentManager, "AssistanceProduits")

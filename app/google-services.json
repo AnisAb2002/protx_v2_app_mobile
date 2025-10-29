@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "273557083627",
+    "firebase_url": "https://protx-7ea7c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "protx-7ea7c",
+    "storage_bucket": "protx-7ea7c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273557083627:android:e087e653ebf73cdf0135ae",
+        "android_client_info": {
+          "package_name": "fr.devmobile.protx_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1SXOG6dtEf5gYKlFIs03NfI9r-hnbqj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
