@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.content.edit
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class SupprimerProfil : DialogFragment() {
 
@@ -39,28 +39,26 @@ class SupprimerProfil : DialogFragment() {
                 Toast.makeText(requireContext(), getString(R.string.remplir), Toast.LENGTH_SHORT).show()
             }
             else{
-                val bd = BD.getDatabase(requireContext())
-                val utilisateurDao = bd.utilisateurDao()
 
                 val sharedPrefs = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-                val identifiant = sharedPrefs.getString("identifiant"," ").toString()
+                val idUtilisateur = sharedPrefs.getString("idUtilisateur", null)
 
-                if (identifiant ==" ") {
+                if (idUtilisateur == null) {
                     Toast.makeText(requireContext(), R.string.introuvable, Toast.LENGTH_SHORT).show()
                     dismiss()
                 }
-                lifecycleScope.launch {
-                    val utilisateur = utilisateurDao.authentifier(identifiant, mdp)
-                    if (utilisateur == null) {
-                        Toast.makeText(requireContext(), R.string.mdpIncorrect, Toast.LENGTH_SHORT).show()
-                    }
-                    else {
 
-                        requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE).edit {
+                val db = Firebase.firestore
+
+                db.collection("utilisateurs")
+                    .document(idUtilisateur.toString())
+                    .delete()
+                    .addOnSuccessListener {
+
+                        sharedPrefs.edit {
                             clear()
                             apply()
                         }
-                        utilisateurDao.supprimerUtilisateur(utilisateur)
 
                         val intent = Intent(requireContext(), Connexion::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -68,7 +66,9 @@ class SupprimerProfil : DialogFragment() {
 
                         dismiss()
                     }
-                }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(requireContext(), R.string.mdpIncorrect, Toast.LENGTH_SHORT).show()
+                    }
             }
         }
         return view

@@ -4,10 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import fr.devmobile.protx_v2.databinding.ActivityConnexionBinding
-import kotlinx.coroutines.launch
 import androidx.core.content.edit
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import java.security.MessageDigest
 
 class Connexion : AppCompatActivity() {
     private lateinit var binding : ActivityConnexionBinding
@@ -17,33 +18,40 @@ class Connexion : AppCompatActivity() {
         binding = ActivityConnexionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val utilisateurDao = BD.getDatabase(this@Connexion).utilisateurDao()
 
         binding.buttonSeConnecter.setOnClickListener {
             val identifiant = binding.identifiant.text.toString()
             val motDePasse = binding.mdp.text.toString()
 
-            lifecycleScope.launch {
+            val db = Firebase.firestore
 
-                val utilisateur = utilisateurDao.authentifier(identifiant, motDePasse)
-                if (utilisateur == null) {
-                    Toast.makeText(this@Connexion, getString(R.string.identifiantIncorecte), Toast.LENGTH_SHORT).show()
+            db.collection("utilisateurs")
+                .whereEqualTo("identifiant", identifiant)
+                .whereEqualTo("motDePasse", hashMotDePasse(motDePasse))
+                .get()
+                .addOnSuccessListener { result ->
+                    if (result.isEmpty) {
+                        Toast.makeText(this@Connexion, getString(R.string.identifiantIncorecte), Toast.LENGTH_SHORT).show()
+
+                    }
+                    else {
+                        val doc = result.documents.first()
+                        val utilisateur = doc.toObject(Utilisateur::class.java)
+
+                        Toast.makeText(this@Connexion, getString(R.string.bienvenue) + " ${utilisateur?.prenom}",Toast.LENGTH_SHORT).show()
+
+                        val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+                        sharedPref.edit {
+                            putString("idUtilisateur", doc.id)
+                            putString("identifiant", utilisateur!!.identifiant)
+                        }
+
+                        val intent = Intent(this@Connexion, Accueil::class.java)
+
+                        startActivity(intent)
+                        finish()
+                    }
                 }
-                else {
-                    Toast.makeText(this@Connexion, getString(R.string.bienvenue) + " ${utilisateur.prenom}",Toast.LENGTH_SHORT).show()
-
-                    val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-                    sharedPref.edit {
-                        putInt("idUtilisateur", utilisateur.idUtilisateur)
-                        putString("identifiant", utilisateur.identifiant)
-                    }
-
-                    val intent = Intent(this@Connexion, Accueil::class.java)
-
-                    startActivity(intent)
-                    finish()
-                    }
-            }
         }
         binding.buttonInscription.setOnClickListener {
             val intent = Intent(this, Inscription::class.java)
@@ -56,5 +64,11 @@ class Connexion : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+
+    fun hashMotDePasse(mdp: String): String {
+        val bytes = MessageDigest.getInstance("SHA-256").digest(mdp.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

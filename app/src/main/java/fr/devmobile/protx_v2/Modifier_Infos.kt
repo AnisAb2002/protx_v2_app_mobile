@@ -10,9 +10,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
-
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class Modifier_Infos : DialogFragment() {
 
@@ -28,34 +27,37 @@ class Modifier_Infos : DialogFragment() {
         val boutonConfirmer = view.findViewById<Button>(R.id.boutonConfirmer)
 
         val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", 0)
-        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
-
-        val utilisateurDao = BD.getDatabase(requireContext()).utilisateurDao()
-
-        if (idUtilisateur != -1){
-            viewLifecycleOwner.lifecycleScope.launch {
-                val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
-                if (utilisateur != null) {
-                    prenomEditText.setText(utilisateur.prenom)
-                    nomEditText.setText(utilisateur.nom)
-                    ageEditText.setText(utilisateur.age.toString())
-                    poidsEditText.setText(utilisateur.poids.toString())
-                    tailleEditText.setText(utilisateur.taille.toString())
+        val idUtilisateur = sharedPref.getString("idUtilisateur", null)
 
 
-                    boutonConfirmer.setOnClickListener {
-                        val nvNom = nomEditText.text.toString()
-                        val nvPrenom = prenomEditText.text.toString()
-                        val nvAge = ageEditText.text.toString()
-                        val nvTaille = tailleEditText.text.toString()
-                        val nvPoids = poidsEditText.text.toString()
 
-                        if (nvNom.isEmpty() || nvPrenom.isEmpty() || nvAge.isEmpty() || nvTaille.isEmpty() || nvPoids.isEmpty()){
-                            val message = getString(R.string.remplir)
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        }
-                        else {
-                            viewLifecycleOwner.lifecycleScope.launch {
+        if (idUtilisateur != null){
+            val db = Firebase.firestore
+
+            db.collection("utilisateurs")
+                .document(idUtilisateur)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val utilisateur = document.toObject(Utilisateur::class.java)
+
+                        prenomEditText.setText(utilisateur!!.prenom)
+                        nomEditText.setText(utilisateur.nom)
+                        ageEditText.setText(utilisateur.age.toString())
+                        poidsEditText.setText(utilisateur.poids.toString())
+                        tailleEditText.setText(utilisateur.taille.toString())
+
+                        boutonConfirmer.setOnClickListener {
+                            val nvNom = nomEditText.text.toString()
+                            val nvPrenom = prenomEditText.text.toString()
+                            val nvAge = ageEditText.text.toString()
+                            val nvTaille = tailleEditText.text.toString()
+                            val nvPoids = poidsEditText.text.toString()
+
+                            if (nvNom.isEmpty() || nvPrenom.isEmpty() || nvAge.isEmpty() || nvTaille.isEmpty() || nvPoids.isEmpty()){
+                                Toast.makeText(requireContext(), getString(R.string.remplir), Toast.LENGTH_SHORT).show()
+                            }
+                            else {
                                 val nvUtilisateur = utilisateur.copy(
                                     nom = nvNom,
                                     prenom = nvPrenom,
@@ -64,16 +66,25 @@ class Modifier_Infos : DialogFragment() {
                                     poids = nvPoids.toFloat()
                                 )
 
-                                utilisateurDao.update(nvUtilisateur)
-                            }
+                                //mettre à jour les infos
+                                db.collection("utilisateurs")
+                                    .document(idUtilisateur)
+                                    .set(nvUtilisateur)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(requireContext(), getString(R.string.misejour), Toast.LENGTH_SHORT).show()
+                                        requireActivity().recreate()
+                                        dismiss()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(requireContext(), "Erreur : ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
 
-                            Toast.makeText(requireContext(), getString(R.string.misejour), Toast.LENGTH_SHORT).show()
-                            requireActivity().recreate()
-                            dismiss()
+                            }
                         }
+
                     }
+
                 }
-            }
         }
 
         boutonRetour.setOnClickListener {
