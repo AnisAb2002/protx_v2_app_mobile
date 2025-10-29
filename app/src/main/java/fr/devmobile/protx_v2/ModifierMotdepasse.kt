@@ -9,8 +9,9 @@ import android.widget.ImageButton
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import java.security.MessageDigest
 
 class ModifierMotdepasse : DialogFragment() {
 
@@ -24,9 +25,9 @@ class ModifierMotdepasse : DialogFragment() {
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
 
         val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", 0)
-        val identifiant = sharedPref.getString("identifiant", " ").toString()
+        val identifiant = sharedPref.getString("identifiant", null)
 
-        val utilisateurDao = BD.getDatabase(requireContext()).utilisateurDao()
+        val db = Firebase.firestore
 
         confirmerBoutton.setOnClickListener {
             val ancienMdp = ancienMdpEditText.text.toString()
@@ -39,24 +40,32 @@ class ModifierMotdepasse : DialogFragment() {
             else if(nvMdp != mdpConfirmation){
                 Toast.makeText(requireContext(), getString(R.string.MdpConfirmation), Toast.LENGTH_SHORT).show()
             }
-            else if (identifiant != " "){
-                viewLifecycleOwner.lifecycleScope.launch {
-                    val utilisateurVerifie = utilisateurDao.authentifier(identifiant, ancienMdp)
+            else if (identifiant != null){
 
-                    if (utilisateurVerifie != null) {
-                        val nvUtilisateur = utilisateurVerifie.copy(
-                            motDePasse = nvMdp,
-                            )
-                        utilisateurDao.update(nvUtilisateur)
+                db.collection("utilisateurs")
+                    .whereEqualTo("identifiant", identifiant)
+                    .whereEqualTo("motDePasse", hashMotDePasse(ancienMdp))
+                    .get()
+                    .addOnSuccessListener { result ->
+                        if (result.isEmpty) {
+                            Toast.makeText(requireContext(),getString(R.string.MdpIncorrect), Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            val utilisateur = result.documents.first().reference
 
-                        Toast.makeText(requireContext(), getString(R.string.miseajour_mot_de_passe), Toast.LENGTH_SHORT).show()
-                        requireActivity().recreate()
-                        dismiss()
+                            utilisateur.update("motDePasse",hashMotDePasse(nvMdp))
+                                .addOnSuccessListener {
+                                    Toast.makeText(requireContext(), getString(R.string.miseajour_mot_de_passe), Toast.LENGTH_SHORT).show()
+                                    requireActivity().recreate()
+                                    dismiss()
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(requireContext(), "Erreur : ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                        }
                     }
-                    else{
-                        Toast.makeText(requireContext(),getString(R.string.MdpIncorrect), Toast.LENGTH_SHORT).show()
-                    }
-                }
+
             }
         }
 
@@ -73,5 +82,11 @@ class ModifierMotdepasse : DialogFragment() {
             ViewGroup.LayoutParams.MATCH_PARENT
         )
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+
+    fun hashMotDePasse(mdp: String): String {
+        val bytes = MessageDigest.getInstance("SHA-256").digest(mdp.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

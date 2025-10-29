@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import fr.devmobile.protx_v2.databinding.ActivityAssistanceBinding
-import kotlinx.coroutines.launch
 
 class Assistance : AppCompatActivity() {
 
@@ -25,22 +25,27 @@ class Assistance : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
         val langue = sharedPref.getString("langue","fr")
-        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
+        val idUtilisateur = sharedPref.getString("idUtilisateur", null)
 
-        if (idUtilisateur != -1) {
+        if (idUtilisateur != null) {
             //Conecté
             //remplissage des EditText avec les informations qu'on a déja sur l'utilisateur
 
-            val bd = BD.getDatabase(this)
-            val utilisateurDao = bd.utilisateurDao()
-            lifecycleScope.launch {
-                val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
-                if (utilisateur != null) {
-                    binding.ageEditText.setText(utilisateur.age.toString())
-                    binding.tailleEditText.setText(utilisateur.taille.toString())
-                    binding.poidsEditText.setText(utilisateur.poids.toString())
+            val db = Firebase.firestore
+
+            db.collection("utilisateurs")
+                .document(idUtilisateur)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val utilisateur = document.toObject(Utilisateur::class.java)
+
+                        binding.ageEditText.setText(utilisateur!!.age.toString())
+                        binding.tailleEditText.setText(utilisateur.taille.toString())
+                        binding.poidsEditText.setText(utilisateur.poids.toString())
+                    }
                 }
-            }
+
         }
 
         binding.envoyerButton.setOnClickListener {

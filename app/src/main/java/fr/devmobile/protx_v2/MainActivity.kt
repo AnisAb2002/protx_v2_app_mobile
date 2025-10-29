@@ -1,6 +1,5 @@
 package fr.devmobile.protx_v2
 
-import com.google.firebase.Firebase
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -40,9 +39,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
+        val idUtilisateur = sharedPref.getString("idUtilisateur", null)
 
-        if (idUtilisateur != -1) {
+        if (idUtilisateur != null) {
             val intent = Intent(this, Accueil::class.java)
             startActivity(intent)
             finish()

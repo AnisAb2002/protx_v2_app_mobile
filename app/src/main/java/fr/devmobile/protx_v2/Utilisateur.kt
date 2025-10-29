@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "utilisateurs")
 
 data class Utilisateur(
-    @PrimaryKey(autoGenerate = true) val idUtilisateur: Int = 0,
-    val nom: String,
-    val prenom: String,
-    val identifiant: String,
-    val motDePasse: String,
-    val age: Int,
-    val taille: Float,
-    val poids: Float
+    @PrimaryKey var id: String = "",
+    var nom: String ="",
+    var prenom: String ="",
+    var identifiant: String ="",
+    var motDePasse: String = "",
+    var age: Int =0,
+    var taille: Float =0f,
+    var poids: Float = 0f
 )

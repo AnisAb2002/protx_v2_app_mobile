@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import fr.devmobile.protx_v2.databinding.ActivityProfilBinding
 import fr.devmobile.protx_v2.databinding.ConnecterProfilBinding
 import fr.devmobile.protx_v2.databinding.InformationProfilBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import androidx.core.content.edit
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class Profil : AppCompatActivity() {
 
@@ -42,7 +40,7 @@ class Profil : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val idUtilisateur = sharedPref.getInt("idUtilisateur", -1)
+        val idUtilisateur = sharedPref.getString("idUtilisateur", null)
         val langue = sharedPref.getString("langue","fr")
 
         if(langue == "fr") {
@@ -54,7 +52,7 @@ class Profil : AppCompatActivity() {
 
 
 
-        if (idUtilisateur == -1) {
+        if (idUtilisateur == null) {
             val profil_container: LinearLayout = binding.informationProfilContainer
             val inflater = LayoutInflater.from(this)
 
@@ -75,46 +73,48 @@ class Profil : AppCompatActivity() {
             val utilisateurInfoContainer = InformationProfilBinding.inflate(inflater, profil_container, false)
             profil_container.addView(utilisateurInfoContainer.root)
 
-            val db = BD.getDatabase(this)
-            val utilisateurDao = db.utilisateurDao()
+            val db = Firebase.firestore
 
-            lifecycleScope.launch {
-                val utilisateur = utilisateurDao.getConnecter(idUtilisateur)
-                if (utilisateur != null) {
-                    utilisateurInfoContainer.nomText.text = utilisateur.nom
-                    utilisateurInfoContainer.prenomText.text = utilisateur.prenom
-                    utilisateurInfoContainer.ageText.text = utilisateur.age.toString()
-                    utilisateurInfoContainer.tailleText.text = utilisateur.taille.toString()
-                    utilisateurInfoContainer.poidsText.text = utilisateur.poids.toString()
+            db.collection("utilisateurs")
+                .document(idUtilisateur)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val utilisateur = document.toObject(Utilisateur::class.java)
 
-                    utilisateurInfoContainer.boutonModifierInfo.setOnClickListener {
-                        Modifier_Infos().show(supportFragmentManager, "Modifier_Infos")
-                    }
+                        utilisateurInfoContainer.nomText.text = utilisateur!!.nom
+                        utilisateurInfoContainer.prenomText.text = utilisateur.prenom
+                        utilisateurInfoContainer.ageText.text = utilisateur.age.toString()
+                        utilisateurInfoContainer.tailleText.text = utilisateur.taille.toString()
+                        utilisateurInfoContainer.poidsText.text = utilisateur.poids.toString()
 
-                    utilisateurInfoContainer.boutonModifierMdp.setOnClickListener {
-                        ModifierMotdepasse().show(supportFragmentManager, "ModifierMotdepasse")
-                    }
-
-                    utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {
-                        sharedPref.edit {
-                            clear() // ou bien  editor.remove("id...")
-                            apply()
+                        utilisateurInfoContainer.boutonModifierInfo.setOnClickListener {
+                            Modifier_Infos().show(supportFragmentManager, "Modifier_Infos")
                         }
-                        startActivity(Intent(this@Profil, Connexion::class.java))
-                        finish()
-                    }
 
-                    utilisateurInfoContainer.boutonSupprimer.setOnClickListener {
-                        SupprimerProfil().show(supportFragmentManager, "SupprimerProfil")
-                    }
+                        utilisateurInfoContainer.boutonModifierMdp.setOnClickListener {
+                            ModifierMotdepasse().show(supportFragmentManager, "ModifierMotdepasse")
+                        }
 
-                } else {
-                    // utilisateur introuvable
-                    withContext(Dispatchers.Main) {
+                        utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {
+                            sharedPref.edit {
+                                clear() // ou bien  editor.remove("id...")
+                                apply()
+                            }
+                            startActivity(Intent(this@Profil, Connexion::class.java))
+                            finish()
+                        }
+
+                        utilisateurInfoContainer.boutonSupprimer.setOnClickListener {
+                            SupprimerProfil().show(supportFragmentManager, "SupprimerProfil")
+                        }
+
+                    }
+                    else {
+                        // utilisateur introuvable
                         Toast.makeText(this@Profil,getString(R.string.introuvable),Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@Profil, Connexion::class.java))
                         finish()
-                    }
                 }
             }
         }
