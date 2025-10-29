@@ -13,7 +13,7 @@
         android:layout_width="170dp"
         android:layout_height="210dp"
         android:contentDescription="@string/produit_image"
-        android:src="@drawable/solidmass1500g"
+        android:src="@drawable/produit_01"
         />
 
     <LinearLayout

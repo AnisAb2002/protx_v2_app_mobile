@@ -3,6 +3,10 @@ plugins {
     alias(libs.plugins.kotlin.android)
 
     id("kotlin-kapt")
+
+    id ("com.google.gms.google-services")
+
+
 }
 
 android {
@@ -42,12 +46,10 @@ android {
 
 dependencies {
 
-    val room_version = "2.6.1"
 
-    implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
-
-    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime.v283)
+    implementation(libs.androidx.room.ktx.v283)
+    kapt(libs.androidx.room.compiler.v283)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -57,4 +59,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(platform(libs.firebase.bom.v3320))
+
+
+    // Authentification
+    implementation (libs.firebase.auth)
+
+    // Firestore (base de données Cloud)
+    implementation (libs.firebase.firestore.ktx)
+
+    // Pour les coroutines
+    implementation (libs.kotlinx.coroutines.android)
+
 }

@@ -104,4 +104,5 @@
     <string name="supprimer_profil">Supprimer mon profil</string>
     <string name="vouloir_supprimer">Êtes-vous sûr de vouloir supprimer votre profil ?\nCette action est irréversible… et cela nous briserait le cœur</string>
     <string name="annuler">Annuler</string>
+    <string name="aucunProduitErreur">Erreur lors du chargement des produits.\nVeuillez vérifier votre connexion et réessayer.</string>
 </resources>

@@ -105,5 +105,7 @@
     <string name="supprimer_profil">Delete my profile</string>
     <string name="vouloir_supprimer">Are you sure you want to delete your profile?\nThis action is irreversible… and it would break our heart.</string>
     <string name="annuler">Cancel</string>
+    <string name="aucunProduitErreur">Error loading products.\nPlease check your connection and try again.</string>
+
 
 </resources>

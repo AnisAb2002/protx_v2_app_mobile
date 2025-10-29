@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import fr.devmobile.protx_v2.databinding.ProduitCaseBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AssistanceProduits : DialogFragment() {
 
@@ -27,106 +25,136 @@ class AssistanceProduits : DialogFragment() {
         }
 
         val cas = arguments?.getString("cas")
+        val langue = arguments?.getString("langue","fr")
+        val imc = arguments?.getString("imc")
 
         val descriptionText = view.findViewById<TextView>(R.id.textAssistanceDescription)
 
-        val db = BD.getDatabase(requireContext())
-        val produitDao = db.produitDao()
-        val imc = arguments?.getString("imc")
+        val db = Firebase.firestore
 
         when(cas){
             "1"->{//moins de 18 ans
                 descriptionText.setText(R.string.cas1)
             }
             "2"->{
-
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas2)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsPrisePoids()
-
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
+                        if (prod.categorie in listOf("Energy", "Gainer / Mass", "Creatine / Force")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
             "3"->{
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas3)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsPertePoids()
-
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
+                        if ((prod.categorie in listOf("Proteine Whey", "Creatine / Force")) and (prod.nom != "Casein")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
             "4"->{
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas4)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsPertePoidsLeger()
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
 
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                        if (prod.categorie in listOf("Creatine / Force", "Proteine Whey", "Energy")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
             "5"->{
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas5)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsPrisePoids()
-
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
+                        if (prod.categorie in listOf("Energy", "Gainer / Mass", "Creatine / Force")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
             "6"->{
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas6)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsPerformance()
-
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
+                        if (prod.categorie in listOf("Energy", "Creatine / Force")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
             "7"->{
                 descriptionText.text = getString(R.string.SelonIMC) +" "+ imc + "\n"+getString(R.string.cas7)
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val produits = produitDao.getProduitsForme()
-
-                    withContext(Dispatchers.Main) {
-                        if (produits.isEmpty()) {
-                            descriptionText.text = getString(R.string.aucunProduitTrouve)
-                        } else {
-                            afficherProduits(produits)
+                db.collection("produits").get()
+                .addOnSuccessListener {
+                    produits ->
+                    if (produits.isEmpty){
+                        descriptionText.text = getString(R.string.aucunProduitErreur)
+                    }
+                    for (produit in produits) {
+                        val prod = produit.toObject(Produit::class.java)
+                        if (prod.categorie in listOf("Proteine Whey", "Creatine / Force")) {
+                            afficherProduits(prod, langue.toString())
                         }
                     }
+                }
+                .addOnFailureListener { exception ->
+                    descriptionText.text = getString(R.string.aucunProduitErreur)
                 }
             }
         }
@@ -146,41 +174,51 @@ class AssistanceProduits : DialogFragment() {
     }
 
     @SuppressLint("SetTextI18n", "UseGetLayoutInflater")
-    private fun afficherProduits(produits: List<Produit>) {
+    private fun afficherProduits(produit: Produit, langue: String) {
 
 
         val container = requireView().findViewById<LinearLayout>(R.id.assistanceContainer)
         val inflater = LayoutInflater.from(requireContext())
 
-        for (produit in produits) {
 
-            val itemBinding = ProduitCaseBinding.inflate(inflater, container, false)
+        val itemBinding = ProduitCaseBinding.inflate(inflater, container, false)
 
-            itemBinding.nomProduit.text = produit.nom
-            itemBinding.categorieProduit.text = produit.categorie
-            itemBinding.poidsProduit.text = produit.poids
-            itemBinding.prixProduit.text = "${produit.prix} €"
-            itemBinding.imageProduit.setImageResource(produit.image_src)
+        itemBinding.nomProduit.text = produit.nom
+        itemBinding.categorieProduit.text = produit.categorie
+        itemBinding.poidsProduit.text = produit.poids
+        itemBinding.prixProduit.text = "${produit.prix} €"
 
-            itemBinding.btnApercu.setOnClickListener {
-                val fragment = ApercuProduit()
+        val imageNom = "produit_${produit.id}"
+        val imageId = itemBinding.root.context.resources.getIdentifier(
+            imageNom,
+            "drawable",
+            itemBinding.root.context.packageName
+        )
 
-                val bundle = Bundle().apply {
-                    putString("nom", produit.nom)
-                    putString("categorie", produit.categorie)
-                    putString("poids", produit.poids)
-                    putDouble("prix", produit.prix)
-                    putString("description", produit.description)
-                    putInt("image_src", produit.image_src)
-                    putString("composition",produit.composition)
-                    putString("portion",produit.portion)
+        itemBinding.imageProduit.setImageResource(imageId)
+
+        itemBinding.btnApercu.setOnClickListener {
+            val fragment = ApercuProduit()
+            val bundle = Bundle().apply {
+                putString("nom", produit.nom)
+                putString("poids", produit.poids)
+                putDouble("prix", produit.prix)
+                putString("categorie", produit.categorie)
+                putInt("image_src", imageId)
+                putString("portion",produit.portion)
+
+                if (langue == "fr"){
+                    putString("composition",produit.compo_fr)
+                    putString("description", produit.desc_fr)
                 }
-                fragment.arguments = bundle
-                fragment.show(parentFragmentManager, "ApercuProduit")
+                else{
+                    putString("composition",produit.compo_en)
+                    putString("description", produit.desc_en)
+                }
             }
-
-            container?.addView(itemBinding.root)
+            fragment.arguments = bundle
+            fragment.show(parentFragmentManager, "ApercuProduit")
         }
-
+        container.addView(itemBinding.root)
     }
 }

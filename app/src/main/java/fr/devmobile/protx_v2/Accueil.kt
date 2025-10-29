@@ -6,18 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import fr.devmobile.protx_v2.databinding.ActivityAccueilBinding
 import fr.devmobile.protx_v2.databinding.ProduitCaseBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class Accueil : AppCompatActivity() {
     private lateinit var binding : ActivityAccueilBinding
 
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,55 +37,72 @@ class Accueil : AppCompatActivity() {
             finish()
         }
 
-        val db = BD.getDatabase(this)
-        val produitDao = db.produitDao()
-        CoroutineScope(Dispatchers.IO).launch {
-            val produits = produitDao.getProduits()
+        val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+        val langue = sharedPref.getString("langue","fr")
 
-            if (produits.isEmpty()) {
-                binding.produitsDescText.text = "Aucun produit trouvé"
-            } else {
-                withContext(Dispatchers.Main) {
-                    afficherProduits(produits)
+        val db = Firebase.firestore
+        db.collection("produits").get()
+        .addOnSuccessListener {
+            produits ->
+            if (produits.isEmpty){
+                binding.produitsDescText.text = getString(R.string.aucunProduitErreur)
+            }
+            else{
+                for (produit in produits) {
+                    val prod = produit.toObject(Produit::class.java)
+                    afficherProduits(prod, langue.toString())
                 }
             }
+        }
+        .addOnFailureListener { exception ->
+            binding.produitsDescText.text = getString(R.string.aucunProduitErreur)
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun afficherProduits(produits: List<Produit>) {
+    private fun afficherProduits(produit: Produit, langue : String) {
+
         val container: LinearLayout = binding.containerProduits
         val inflater = LayoutInflater.from(this)
 
-        for (produit in produits) {
+        val itemBinding = ProduitCaseBinding.inflate(inflater, container, false)
 
-            val itemBinding = ProduitCaseBinding.inflate(inflater, container, false)
+        itemBinding.nomProduit.text = produit.nom
+        itemBinding.categorieProduit.text = produit.categorie
+        itemBinding.poidsProduit.text = produit.poids
+        itemBinding.prixProduit.text = "${produit.prix} €"
 
-            itemBinding.nomProduit.text = produit.nom
-            itemBinding.categorieProduit.text = produit.categorie
-            itemBinding.poidsProduit.text = produit.poids
-            itemBinding.prixProduit.text = "${produit.prix} €"
-            itemBinding.imageProduit.setImageResource(produit.image_src)
+        val imageNom = "produit_${produit.id}"
+        val imageId = itemBinding.root.context.resources.getIdentifier(
+            imageNom,
+            "drawable",
+            itemBinding.root.context.packageName
+        )
 
-            itemBinding.btnApercu.setOnClickListener {
-                val fragment = ApercuProduit()
+        itemBinding.imageProduit.setImageResource(imageId)
 
-                val bundle = Bundle().apply {
-                    putString("nom", produit.nom)
-                    putString("categorie", produit.categorie)
-                    putString("poids", produit.poids)
-                    putDouble("prix", produit.prix)
-                    putString("description", produit.description)
-                    putInt("image_src", produit.image_src)
-                    putString("composition",produit.composition)
-                    putString("portion",produit.portion)
+        itemBinding.btnApercu.setOnClickListener {
+            val fragment = ApercuProduit()
+            val bundle = Bundle().apply {
+                putString("nom", produit.nom)
+                putString("poids", produit.poids)
+                putDouble("prix", produit.prix)
+                putString("categorie", produit.categorie)
+                putInt("image_src", imageId)
+                putString("portion",produit.portion)
+
+                if (langue == "fr"){
+                    putString("composition",produit.compo_fr)
+                    putString("description", produit.desc_fr)
                 }
-                fragment.arguments = bundle
-                fragment.show(supportFragmentManager, "ApercuProduit")
+                else{
+                    putString("composition",produit.compo_en)
+                    putString("description", produit.desc_en)
+                }
             }
-
-            container.addView(itemBinding.root)
+            fragment.arguments = bundle
+            fragment.show(supportFragmentManager, "ApercuProduit")
         }
-
+        container.addView(itemBinding.root)
     }
 }
