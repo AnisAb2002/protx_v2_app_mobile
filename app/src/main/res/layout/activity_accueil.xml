@@ -57,11 +57,21 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:id="@+id/profilBtn"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginHorizontal="2dp"
                 android:textColor="@color/grey"
                 android:textSize="11sp"
                 android:text="@string/profil"/>
+
+            <ImageButton
+                android:id="@+id/boutonPanier"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/bouton_retourner"
+                app:srcCompat="@drawable/cart_24"
+                android:layout_marginEnd="4dp"
+                app:tint="@color/grey"
+                android:backgroundTint="@color/white"
+                />
         </LinearLayout>
         <TextView
             android:id="@+id/produits_desc_text"

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.content.Context.MODE_PRIVATE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
@@ -11,11 +12,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 
 class ApercuProduit : DialogFragment() {
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "MutatingSharedPrefs")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_apercu_produit, container, false)
@@ -26,6 +28,7 @@ class ApercuProduit : DialogFragment() {
         }
 
         // Récupérer les arguments
+        val idProduit = arguments?.getString("idProduit")
         val nom = arguments?.getString("nom")
         val categorie = arguments?.getString("categorie")
         val poids = arguments?.getString("poids")
@@ -56,37 +59,19 @@ class ApercuProduit : DialogFragment() {
 
 
 
-
-        val boutonPlus = view.findViewById<Button>(R.id.ajouterQntButton)
-        val boutonMoins = view.findViewById<Button>(R.id.diminuerQntButton)
-        val qntEditText = view.findViewById<EditText>(R.id.quantiteEditText)
         val ajouterPanierBoutton = view.findViewById<Button>(R.id.ajouterPanierButton)
 
-        qntEditText.setText("0")
 
-        boutonMoins.setOnClickListener {
-            var qnt = qntEditText.text.toString().toInt()
-            if (qnt>0){
-                qnt = qnt - 1
-                qntEditText.setText(qnt.toString())
-            }
-        }
-        boutonPlus.setOnClickListener {
-            var qnt = qntEditText.text.toString().toInt()
-            qnt = qnt + 1
-            qntEditText.setText(qnt.toString())
-        }
+
         ajouterPanierBoutton.setOnClickListener {
-            val qnt = qntEditText.text.toString().toInt()
-            if (qnt==0){
-                Toast.makeText(requireContext(),getString(R.string.choixQnt),  Toast.LENGTH_SHORT).show()
-            }
-            else{
-                //ajout au panier
+            val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+            val panierSet = sharedPref.getStringSet("panier", mutableSetOf()) ?: mutableSetOf()
 
+            panierSet.add(idProduit)
 
-                Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
-            }
+            sharedPref.edit { putStringSet("panier", panierSet) }
+
+            Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
         }
 
         return view

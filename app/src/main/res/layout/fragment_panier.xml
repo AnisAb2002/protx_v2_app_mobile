@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Panier"
+    android:background="@color/grey">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        tools:ignore="UselessParent"
+        android:id="@+id/nav">
+
+        <ImageButton
+            android:id="@+id/retourBouton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/bouton_retourner"
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/white"
+            android:backgroundTint="@color/grey"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/panier"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent"
+        android:layout_alignParentBottom="true"
+        android:elevation="1dp"
+        android:background="@color/grey">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@id/commande">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:id="@+id/total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="3dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:text="@string/total"/>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_weight="4"
+                android:id="@+id/boutonCommander"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="3dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:text="@string/passer_commande"/>
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:id="@+id/boutonVider"
+            android:layout_below="@+id/commande"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginVertical="3dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:text="@string/vider_panier"/>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nav"
+        android:orientation="horizontal"
+        android:paddingBottom="130dp"
+        android:contentDescription="@string/produits">
+
+        <LinearLayout
+            android:id="@+id/containerProduits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"/>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

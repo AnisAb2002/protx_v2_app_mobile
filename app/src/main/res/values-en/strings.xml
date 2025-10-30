@@ -106,6 +106,9 @@
     <string name="vouloir_supprimer">Are you sure you want to delete your profile?\nThis action is irreversible… and it would break our heart.</string>
     <string name="annuler">Cancel</string>
     <string name="aucunProduitErreur">Error loading products.\nPlease check your connection and try again.</string>
-
-
+    <string name="panier">Cart</string>
+    <string name="passer_commande">Place an order</string>
+    <string name="vider_panier">Empty the cart</string>
+    <string name="votre_panier_est_vide">Your cart is empty</string>
+    <string name="total">Total :</string>
 </resources>

@@ -105,4 +105,9 @@
     <string name="vouloir_supprimer">Êtes-vous sûr de vouloir supprimer votre profil ?\nCette action est irréversible… et cela nous briserait le cœur</string>
     <string name="annuler">Annuler</string>
     <string name="aucunProduitErreur">Erreur lors du chargement des produits.\nVeuillez vérifier votre connexion et réessayer.</string>
+    <string name="panier">Panier</string>
+    <string name="passer_commande">Passer une commande</string>
+    <string name="vider_panier">Vider le panier</string>
+    <string name="votre_panier_est_vide">Votre panier est vide</string>
+    <string name="total">Total :</string>
 </resources>
