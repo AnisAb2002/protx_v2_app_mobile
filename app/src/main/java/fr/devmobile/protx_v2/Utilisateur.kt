@@ -9,6 +9,8 @@ data class Utilisateur(
     @PrimaryKey var id: String = "",
     var nom: String ="",
     var prenom: String ="",
+    var adresse: String ="",
+    var tel: String ="",
     var identifiant: String ="",
     var motDePasse: String = "",
     var age: Int =0,

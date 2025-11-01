@@ -4,18 +4,20 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.content.Context.MODE_PRIVATE
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ApercuProduit : DialogFragment() {
+
+
 
     @SuppressLint("SetTextI18n", "MutatingSharedPrefs")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,11 +30,11 @@ class ApercuProduit : DialogFragment() {
         }
 
         // Récupérer les arguments
-        val idProduit = arguments?.getString("idProduit")
-        val nom = arguments?.getString("nom")
+        val idProduit = arguments?.getString("idProduit").toString()
+        val nom = arguments?.getString("nom").toString()
         val categorie = arguments?.getString("categorie")
         val poids = arguments?.getString("poids")
-        val prix = arguments?.getDouble("prix")
+        val prix = arguments?.getDouble("prix")!!
         val description = arguments?.getString("description")
         val imageSrc = arguments?.getInt("image_src")
         val portion = arguments?.getString("portion")
@@ -64,13 +66,23 @@ class ApercuProduit : DialogFragment() {
 
 
         ajouterPanierBoutton.setOnClickListener {
-            val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-            val panierSet = sharedPref.getStringSet("panier", mutableSetOf()) ?: mutableSetOf()
 
-            panierSet.add(idProduit)
+            val db = BD.getDatabase(requireContext())
+            val panierDao = db.panierDao()
 
-            sharedPref.edit { putStringSet("panier", panierSet) }
-
+            CoroutineScope(Dispatchers.IO).launch {
+                val existe = panierDao.getProduitParId(idProduit)
+                if (existe == null) {
+                    panierDao.ajouterProduit(
+                        PanierEntity(
+                            idProduit = idProduit,
+                            nomProduit = nom,
+                            prix = prix,
+                            qnt = 1
+                        )
+                    )
+                }
+            }
             Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
         }
 

@@ -111,4 +111,22 @@
     <string name="vider_panier">Empty the cart</string>
     <string name="votre_panier_est_vide">Your cart is empty</string>
     <string name="total">Total :</string>
+    <string name="adresse">Adress</string>
+    <string name="num_tel">Phone</string>
+    <string name="produit">Product</string>
+    <string name="quantite">Quantity</string>
+    <string name="sous_total">Subtotal</string>
+    <string name="numero_invalide">Invalid phone number</string>
+    <string name="paiement">Payment</string>
+    <string name="valider_paiement">Validate payment</string>
+    <string name="titulaire">Cardholder</string>
+    <string name="num_ro_de_carte">Card number</string>
+    <string name="carte_invalide">Invalid card number</string>
+    <string name="cvc_invalide">Invalid CVC</string>
+    <string name="date">Expiration date MM/YY</string>
+    <string name="cvc">CVC</string>
+    <string name="erreurDate">Invalid expiration date</string>
+    <string name="confirmation_achat">Merci pour votre achat !\nVotre commande a bien été enregistrée.</string>
+    <string name="mes_commandes">My purchases</string>
+    <string name="aucunAchat">You haven’t made any purchases yet.</string>
 </resources>

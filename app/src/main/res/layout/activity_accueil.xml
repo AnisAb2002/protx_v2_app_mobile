@@ -8,6 +8,7 @@
     tools:context=".MainActivity"
     android:background="@color/grey">
 
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,28 +28,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/bouton_bar">
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+            <ImageButton
                 android:id="@+id/rechercherBtn"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="2dp"
-                android:textColor="@color/grey"
-                android:textSize="11sp"
-                android:text="@string/rechercher"/>
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="2dp"
+                android:contentDescription="@string/recherchebouton"
+                app:srcCompat="@drawable/search_24"
+                app:tint="@color/grey"
+                android:backgroundTint="@color/white"/>
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.Icon"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:layout_marginEnd="2dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:id="@+id/assistanceBtn"
-                android:layout_marginHorizontal="2dp"
                 android:textColor="@color/grey"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:text="@string/assistance"/>
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.Icon"
@@ -56,22 +54,19 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:layout_marginStart="2dp"
                 android:id="@+id/profilBtn"
-                android:layout_marginHorizontal="2dp"
                 android:textColor="@color/grey"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:text="@string/profil"/>
-
             <ImageButton
                 android:id="@+id/boutonPanier"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:contentDescription="@string/bouton_retourner"
+                android:contentDescription="@string/ajouter_au_panier"
                 app:srcCompat="@drawable/cart_24"
-                android:layout_marginEnd="4dp"
                 app:tint="@color/grey"
-                android:backgroundTint="@color/white"
-                />
+                android:backgroundTint="@color/white"/>
         </LinearLayout>
         <TextView
             android:id="@+id/produits_desc_text"

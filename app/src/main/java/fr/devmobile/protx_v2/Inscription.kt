@@ -22,6 +22,8 @@ class Inscription : AppCompatActivity() {
         binding.buttonInscription.setOnClickListener {
             val nom = binding.nomEditText.text.toString().trim()
             val prenom = binding.prenomEditText.text.toString().trim()
+            val adresse = binding.adresseEditText.text.toString().trim()
+            val tel = binding.numeroEditText.text.toString().trim()
             val age = binding.ageEditText.text.toString().trim()
             val taille = binding.tailleEditText.text.toString().trim()
             val poids = binding.poidsEditText.text.toString().trim()
@@ -29,9 +31,12 @@ class Inscription : AppCompatActivity() {
             val mdp = binding.mdpEditText.text.toString().trim()
             val mdpConfirmation = binding.mdpConfirmationEditText.text.toString().trim()
 
-            if (nom.isEmpty() || prenom.isEmpty() || age.isEmpty() || taille.isEmpty() || poids.isEmpty()
+            if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || age.isEmpty() || taille.isEmpty() || poids.isEmpty()
                 || identifiant.isEmpty() || mdp.isEmpty() || mdpConfirmation.isEmpty()){
                 Toast.makeText(this, getString(R.string.remplir), Toast.LENGTH_SHORT).show()
+            }
+            else if (!tel.matches(Regex("^\\+?[0-9]{10,15}$"))) {
+                Toast.makeText(this, getString(R.string.numero_invalide), Toast.LENGTH_SHORT).show()
             }
             else if (mdp != mdpConfirmation){
                 Toast.makeText(this, getString(R.string.MdpConfirmation), Toast.LENGTH_SHORT).show()
@@ -42,6 +47,8 @@ class Inscription : AppCompatActivity() {
                 val utilisateur = Utilisateur(
                     nom = nom,
                     prenom = prenom,
+                    adresse = adresse,
+                    tel = tel,
                     identifiant = identifiant,
                     motDePasse = hashMotDePasse(mdp),
                     age = age.toInt(),

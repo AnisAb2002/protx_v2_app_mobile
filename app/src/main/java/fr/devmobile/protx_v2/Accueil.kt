@@ -41,6 +41,7 @@ class Accueil : AppCompatActivity() {
             Panier().show(supportFragmentManager, "Panier")
         }
 
+
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
         val langue = sharedPref.getString("langue","fr")
 

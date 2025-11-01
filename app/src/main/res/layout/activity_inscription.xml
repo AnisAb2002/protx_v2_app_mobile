@@ -76,6 +76,51 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:text="@string/adresse"
+                    android:labelFor="@+id/adresseEditText"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:id="@+id/adresseEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_tel"
+                    android:labelFor="@+id/numeroEditText"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:id="@+id/numeroEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:inputType="phone"
+                    android:maxLength="15"
+                    android:textColor="@color/white"
+                    android:background="@color/lightGreyTransparent"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/age"
                     android:labelFor="@+id/ageEditText"
                     android:textSize="15sp"

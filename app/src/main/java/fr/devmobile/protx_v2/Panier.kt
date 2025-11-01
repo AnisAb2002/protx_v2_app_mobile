@@ -1,7 +1,6 @@
 package fr.devmobile.protx_v2
 
 import android.annotation.SuppressLint
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
@@ -15,11 +14,17 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import fr.devmobile.protx_v2.databinding.PanierVideBinding
 import fr.devmobile.protx_v2.databinding.ProduitDansPanierBinding
-import androidx.core.content.edit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.text.toInt
 
 class Panier : DialogFragment() {
-    var somme = 0.0
+
+    private var somme = 0.0
+    private lateinit var db: BD
+    private lateinit var panierDao: PanierEntityDao
 
     @SuppressLint("UseGetLayoutInflater", "DetachAndAttachSameFragment", "SetTextI18n",
         "DefaultLocale"
@@ -27,14 +32,11 @@ class Panier : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_panier, container, false)
 
-        setStyle(STYLE_NORMAL, 0)
-
         val container: LinearLayout = view.findViewById(R.id.containerProduits)
         val inflater = LayoutInflater.from(requireContext())
 
-
-        val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-        val panierSet = sharedPref.getStringSet("panier", emptySet())
+        db = BD.getDatabase(requireContext())
+        panierDao = db.panierDao()
 
 
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
@@ -50,62 +52,70 @@ class Panier : DialogFragment() {
         val boutonCommander = view.findViewById<Button>(R.id.boutonCommander)
 
         boutonCommander.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.passer_commande),Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.IO).launch {
+                val produits = panierDao.getTousLesProduits()
+                withContext(Dispatchers.Main) {
+                    if (produits.isEmpty()) {
+                        Toast.makeText(requireContext(), getString(R.string.votre_panier_est_vide), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Commander().show(parentFragmentManager, "Commander")
+                        dismiss()
+                    }
+                }
+            }
         }
 
         boutonViderPanier.setOnClickListener {
-            sharedPref.edit { remove("panier") }
-
-            val nouveauPanier = Panier()
-            nouveauPanier.show(parentFragmentManager, "Panier")
-            dismiss()
+            CoroutineScope(Dispatchers.IO).launch {
+                panierDao.viderPanier()
+                withContext(Dispatchers.Main) {
+                    rafraichirVue()
+                }
+            }
         }
 
 
+        CoroutineScope(Dispatchers.IO).launch {
+            val produits = panierDao.getTousLesProduits()
+            withContext(Dispatchers.Main) {
+                if(produits.isEmpty()){
+                    val viewVide = PanierVideBinding.inflate(inflater, container, false)
+                    container.addView(viewVide.root)
+                }
+                else{
+                    val fbd= Firebase.firestore
 
+                    for (produitPanier in produits) {
+                        fbd.collection("produits")
+                            .whereEqualTo("id", produitPanier.idProduit)
+                            .get()
+                            .addOnSuccessListener { resultat ->
+                                if (resultat.isEmpty){
+                                    Toast.makeText(requireContext(), getString(R.string.aucunProduitErreur),Toast.LENGTH_SHORT).show()
+                                }
+                                else{
+                                    val produit = resultat.documents.first()
+                                    if (produit.exists()){
+                                        val container: LinearLayout = requireView().findViewById(R.id.containerProduits)
+                                        val p = produit.toObject(Produit::class.java) as Produit
+                                        afficherProduits(p, container, produitPanier.qnt)
 
-
-
-        if (panierSet.isNullOrEmpty()) {
-            // Panier vide
-            val viewVide = PanierVideBinding.inflate(inflater, container, false)
-            container.addView(viewVide.root)
-        }
-        else {
-            val ids = panierSet.map { it }
-
-            val db = Firebase.firestore
-
-            for (idProduit in ids) {
-
-                db.collection("produits")
-                    .whereEqualTo("id", idProduit)
-                    .get()
-                    .addOnSuccessListener { resultat ->
-                        if (resultat.isEmpty){
-                            Toast.makeText(requireContext(), getString(R.string.aucunProduitErreur),Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            val produit = resultat.documents.first()
-                            if (produit.exists()){
-                                val container: LinearLayout = requireView().findViewById(R.id.containerProduits)
-                                val p = produit.toObject(Produit::class.java) as Produit
-                                afficherProduits(p, container)
-
-                                somme = somme + ( p.prix )
-                                total?.text =
-                                    getString(R.string.total) + "  " + String.format("%.2f",somme)
+                                        somme = somme + ( p.prix * produitPanier.qnt )
+                                        total?.text =
+                                            getString(R.string.total) + "  " + String.format("%.2f",somme)
+                                    }
+                                    else{
+                                        val itemBinding = PanierVideBinding.inflate(inflater, container, false)
+                                        container.addView(itemBinding.root)
+                                    }
+                                }
                             }
-                            else{
-                                val itemBinding = PanierVideBinding.inflate(inflater, container, false)
-                                container.addView(itemBinding.root)
+                            .addOnFailureListener {
+                                Toast.makeText(requireContext(), getString(R.string.aucunProduitErreur),Toast.LENGTH_SHORT).show()
                             }
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(requireContext(), getString(R.string.aucunProduitErreur),Toast.LENGTH_SHORT).show()
-                    }
 
+                    }
+                }
             }
         }
 
@@ -120,7 +130,6 @@ class Panier : DialogFragment() {
             ViewGroup.LayoutParams.MATCH_PARENT
         )
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog?.window?.setWindowAnimations(0)
     }
 
 
@@ -129,7 +138,7 @@ class Panier : DialogFragment() {
     @SuppressLint("SetTextI18n", "UseGetLayoutInflater", "DetachAndAttachSameFragment",
         "DefaultLocale"
     )
-    private fun afficherProduits(produit: Produit, container : LinearLayout) {
+    private fun afficherProduits(produit: Produit, container : LinearLayout, quantite : Int) {
 
 
         val inflater = LayoutInflater.from(requireContext())
@@ -152,13 +161,22 @@ class Panier : DialogFragment() {
 
 
 
-        itemBinding.quantiteEditText.setText("1")
+        itemBinding.quantiteEditText.setText(quantite.toString())
 
 
         itemBinding.ajouterQntButton.setOnClickListener {
+
             var qnt = itemBinding.quantiteEditText.text.toString().toInt()
             qnt = qnt + 1
             itemBinding.quantiteEditText.setText(qnt.toString())
+
+            db = BD.getDatabase(requireContext())
+            panierDao = db.panierDao()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                panierDao.mettreAJourQuantite(produit.id, qnt)
+            }
+
             somme = somme + ( produit.prix)
 
             val total = view?.findViewById<Button>(R.id.total)
@@ -171,6 +189,13 @@ class Panier : DialogFragment() {
                 qnt = qnt - 1
                 itemBinding.quantiteEditText.setText(qnt.toString())
 
+                db = BD.getDatabase(requireContext())
+                panierDao = db.panierDao()
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    panierDao.mettreAJourQuantite(produit.id, qnt)
+                }
+
                 somme = somme - ( produit.prix)
 
                 val total = view?.findViewById<Button>(R.id.total)
@@ -179,18 +204,62 @@ class Panier : DialogFragment() {
         }
 
         itemBinding.boutonSupprimer.setOnClickListener {
-            val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
-            val panierSet = sharedPref.getStringSet("panier", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+            CoroutineScope(Dispatchers.IO).launch {
+                val existe = panierDao.getProduitParId(produit.id)
+                if (existe != null) panierDao.supprimerProduit(existe)
 
-            panierSet.remove(produit.id)
-            sharedPref.edit { putStringSet("panier", panierSet) }
-
-            val nouveauPanier = Panier()
-            nouveauPanier.show(parentFragmentManager, "Panier")
-            dismiss()
+                withContext(Dispatchers.Main) {
+                    rafraichirVue()
+                }
+            }
         }
 
 
         container.addView(itemBinding.root)
     }
+
+
+
+
+
+
+    @SuppressLint("DefaultLocale", "SetTextI18n")
+    fun rafraichirVue() {
+        val container: LinearLayout = requireView().findViewById(R.id.containerProduits)
+        val total = requireView().findViewById<Button>(R.id.total)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val produits = panierDao.getTousLesProduits()
+
+            withContext(Dispatchers.Main) {
+
+                container.removeAllViews()
+                somme = 0.0
+
+                if (produits.isEmpty()) {
+                    val viewVide = PanierVideBinding.inflate(layoutInflater, container, false)
+                    container.addView(viewVide.root)
+                    total.text = getString(R.string.total) + "  0.00"
+                } else {
+                    val fbd = Firebase.firestore
+                    for (produitPanier in produits) {
+                        fbd.collection("produits")
+                            .whereEqualTo("id", produitPanier.idProduit)
+                            .get()
+                            .addOnSuccessListener { resultat ->
+                                if (!resultat.isEmpty) {
+                                    val produit = resultat.documents.first().toObject(Produit::class.java)
+                                    if (produit != null) {
+                                        afficherProduits(produit, container, produitPanier.qnt)
+                                        somme += produit.prix * produitPanier.qnt
+                                        total.text = getString(R.string.total) + "  " + String.format("%.2f", somme)
+                                    }
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+
 }

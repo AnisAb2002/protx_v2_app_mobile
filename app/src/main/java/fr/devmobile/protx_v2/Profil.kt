@@ -84,6 +84,8 @@ class Profil : AppCompatActivity() {
 
                         utilisateurInfoContainer.nomText.text = utilisateur!!.nom
                         utilisateurInfoContainer.prenomText.text = utilisateur.prenom
+                        utilisateurInfoContainer.adresseText.text = utilisateur.adresse
+                        utilisateurInfoContainer.numText.text = utilisateur.tel
                         utilisateurInfoContainer.ageText.text = utilisateur.age.toString()
                         utilisateurInfoContainer.tailleText.text = utilisateur.taille.toString()
                         utilisateurInfoContainer.poidsText.text = utilisateur.poids.toString()
@@ -94,6 +96,10 @@ class Profil : AppCompatActivity() {
 
                         utilisateurInfoContainer.boutonModifierMdp.setOnClickListener {
                             ModifierMotdepasse().show(supportFragmentManager, "ModifierMotdepasse")
+                        }
+
+                        utilisateurInfoContainer.boutonCommandes.setOnClickListener {
+                            Achats().show(supportFragmentManager, "Achats")
                         }
 
                         utilisateurInfoContainer.boutonSeDeconnecter.setOnClickListener {

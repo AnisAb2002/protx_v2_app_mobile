@@ -110,4 +110,24 @@
     <string name="vider_panier">Vider le panier</string>
     <string name="votre_panier_est_vide">Votre panier est vide</string>
     <string name="total">Total :</string>
+    <string name="adresse">Adresse</string>
+    <string name="num_tel">Téléphone</string>
+    <string name="produit">Produit</string>
+    <string name="quantite">Quantité</string>
+    <string name="sous_total">Sous-total</string>
+    <string name="numero_invalide">Numéro de téléphone invalide</string>
+    <string name="paiement">Paiement</string>
+    <string name="valider_paiement">Valider le paiement</string>
+    <string name="titulaire">Nom du titulaire</string>
+    <string name="num_ro_de_carte">Numéro de carte</string>
+    <string name="carte_invalide">Numéro de carte invalide</string>
+    <string name="cvc_invalide">CVC invalide</string>
+    <string name="date">Date d\'expiration MM/AA</string>
+    <string name="cvc">CVC</string>
+    <string name="erreurDate">Date d\'expiration invalide</string>
+    <string name="confirmation_achat">Merci pour votre achat !\nVotre commande a bien été enregistrée.</string>
+    <string name="mes_commandes">Mes achats</string>
+    <string name="aucunAchat">Vous n’avez encore effectué aucun achat.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
