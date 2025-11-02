@@ -6,16 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ApercuProduit : DialogFragment() {
 
-    @SuppressLint("SetTextI18n")
+
+
+    @SuppressLint("SetTextI18n", "MutatingSharedPrefs")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_apercu_produit, container, false)
@@ -26,10 +30,11 @@ class ApercuProduit : DialogFragment() {
         }
 
         // Récupérer les arguments
-        val nom = arguments?.getString("nom")
+        val idProduit = arguments?.getString("idProduit").toString()
+        val nom = arguments?.getString("nom").toString()
         val categorie = arguments?.getString("categorie")
         val poids = arguments?.getString("poids")
-        val prix = arguments?.getDouble("prix")
+        val prix = arguments?.getDouble("prix")!!
         val description = arguments?.getString("description")
         val imageSrc = arguments?.getInt("image_src")
         val portion = arguments?.getString("portion")
@@ -56,37 +61,29 @@ class ApercuProduit : DialogFragment() {
 
 
 
-
-        val boutonPlus = view.findViewById<Button>(R.id.ajouterQntButton)
-        val boutonMoins = view.findViewById<Button>(R.id.diminuerQntButton)
-        val qntEditText = view.findViewById<EditText>(R.id.quantiteEditText)
         val ajouterPanierBoutton = view.findViewById<Button>(R.id.ajouterPanierButton)
 
-        qntEditText.setText("0")
 
-        boutonMoins.setOnClickListener {
-            var qnt = qntEditText.text.toString().toInt()
-            if (qnt>0){
-                qnt = qnt - 1
-                qntEditText.setText(qnt.toString())
-            }
-        }
-        boutonPlus.setOnClickListener {
-            var qnt = qntEditText.text.toString().toInt()
-            qnt = qnt + 1
-            qntEditText.setText(qnt.toString())
-        }
+
         ajouterPanierBoutton.setOnClickListener {
-            val qnt = qntEditText.text.toString().toInt()
-            if (qnt==0){
-                Toast.makeText(requireContext(),getString(R.string.choixQnt),  Toast.LENGTH_SHORT).show()
-            }
-            else{
-                //ajout au panier
 
+            val db = BD.getDatabase(requireContext())
+            val panierDao = db.panierDao()
 
-                Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.IO).launch {
+                val existe = panierDao.getProduitParId(idProduit)
+                if (existe == null) {
+                    panierDao.ajouterProduit(
+                        PanierEntity(
+                            idProduit = idProduit,
+                            nomProduit = nom,
+                            prix = prix,
+                            qnt = 1
+                        )
+                    )
+                }
             }
+            Toast.makeText(requireContext(),getString(R.string.produitAjoutePanier),  Toast.LENGTH_SHORT).show()
         }
 
         return view

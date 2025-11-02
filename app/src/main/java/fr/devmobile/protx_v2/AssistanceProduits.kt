@@ -200,6 +200,7 @@ class AssistanceProduits : DialogFragment() {
         itemBinding.btnApercu.setOnClickListener {
             val fragment = ApercuProduit()
             val bundle = Bundle().apply {
+                putString("idProduit", produit.id)
                 putString("nom", produit.nom)
                 putString("poids", produit.poids)
                 putDouble("prix", produit.prix)

@@ -37,6 +37,11 @@ class Accueil : AppCompatActivity() {
             finish()
         }
 
+        binding.boutonPanier.setOnClickListener {
+            Panier().show(supportFragmentManager, "Panier")
+        }
+
+
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
         val langue = sharedPref.getString("langue","fr")
 
@@ -84,6 +89,7 @@ class Accueil : AppCompatActivity() {
         itemBinding.btnApercu.setOnClickListener {
             val fragment = ApercuProduit()
             val bundle = Bundle().apply {
+                putString("idProduit", produit.id)
                 putString("nom", produit.nom)
                 putString("poids", produit.poids)
                 putDouble("prix", produit.prix)
