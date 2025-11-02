@@ -1,6 +1,8 @@
 package fr.devmobile.protx_v2
 
 import android.annotation.SuppressLint
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
@@ -52,14 +54,24 @@ class Panier : DialogFragment() {
         val boutonCommander = view.findViewById<Button>(R.id.boutonCommander)
 
         boutonCommander.setOnClickListener {
+            val sharedPref = requireContext().getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
+            val idUtilisateur = sharedPref.getString("idUtilisateur", null)
             CoroutineScope(Dispatchers.IO).launch {
                 val produits = panierDao.getTousLesProduits()
                 withContext(Dispatchers.Main) {
-                    if (produits.isEmpty()) {
-                        Toast.makeText(requireContext(), getString(R.string.votre_panier_est_vide), Toast.LENGTH_SHORT).show()
-                    } else {
-                        Commander().show(parentFragmentManager, "Commander")
-                        dismiss()
+                    when{
+                        produits.isEmpty()-> Toast.makeText(requireContext(), getString(R.string.votre_panier_est_vide), Toast.LENGTH_SHORT).show()
+                        idUtilisateur.isNullOrBlank() -> {
+                            Toast.makeText(requireContext(), getString(R.string.ouvrir_compte), Toast.LENGTH_SHORT).show()
+                            val intent = Intent(requireContext(), Connexion::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                            dismiss()
+                        }
+                        else-> {
+                            Commander().show(parentFragmentManager, "Commander")
+                            dismiss()
+                        }
                     }
                 }
             }

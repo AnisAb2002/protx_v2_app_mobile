@@ -130,4 +130,5 @@
     <string name="aucunAchat">Vous n’avez encore effectué aucun achat.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ouvrir_compte">Veuillez vous connecter à votre compte</string>
 </resources>
