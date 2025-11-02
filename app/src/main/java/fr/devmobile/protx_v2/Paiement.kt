@@ -1,7 +1,6 @@
 package fr.devmobile.protx_v2
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater

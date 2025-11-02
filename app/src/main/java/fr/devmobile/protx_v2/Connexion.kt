@@ -32,7 +32,6 @@ class Connexion : AppCompatActivity() {
                 .addOnSuccessListener { result ->
                     if (result.isEmpty) {
                         Toast.makeText(this@Connexion, getString(R.string.identifiantIncorecte), Toast.LENGTH_SHORT).show()
-
                     }
                     else {
                         val doc = result.documents.first()
@@ -51,6 +50,9 @@ class Connexion : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this@Connexion, getString(R.string.verifierConnexion), Toast.LENGTH_SHORT).show()
                 }
         }
         binding.buttonInscription.setOnClickListener {

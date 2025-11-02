@@ -130,4 +130,5 @@
     <string name="mes_commandes">My purchases</string>
     <string name="aucunAchat">You haven’t made any purchases yet.</string>
     <string name="ouvrir_compte">Please log in</string>
+    <string name="verifierConnexion">Please check your Internet connection.</string>
 </resources>
