@@ -91,13 +91,45 @@
                     android:labelFor="@+id/dateEditText"
                     android:textSize="14sp"
                     android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mois"
+                    android:layout_marginEnd="8dp"
+                    android:layout_gravity="center"
+                    android:labelFor="@+id/moisEditText"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
                 <EditText
-                    android:id="@+id/dateEditText"
-                    android:layout_width="match_parent"
+                    android:id="@+id/moisEditText"
+                    android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:autofillHints=""
                     android:inputType="date"
-                    android:maxLength="16"
+                    android:maxLength="2"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:background="@color/lightGrey"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginEnd="19dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aa"
+                    android:layout_marginEnd="8dp"
+                    android:layout_gravity="center"
+                    android:labelFor="@+id/anneeEditText"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:id="@+id/anneeEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:inputType="date"
+                    android:maxLength="2"
+                    android:layout_weight="1"
                     android:textColor="@color/white"
                     android:background="@color/lightGrey"
                     android:paddingHorizontal="8dp"

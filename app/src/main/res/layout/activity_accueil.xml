@@ -12,80 +12,80 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nav">
-
-        <ImageView
-            android:contentDescription="@string/protx_logo"
-            android:layout_width="280dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="90dp"
-            android:src="@drawable/logo"
-            android:id="@+id/protx_logo_img"
-            />
-        <LinearLayout
-            android:layout_below="@+id/protx_logo_img"
+        android:id="@+id/nav"
+        android:elevation="2dp"
+        android:background="@color/lightGrey">
+        <ImageButton
+            android:id="@+id/rechercherBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/bouton_bar">
-            <ImageButton
-                android:id="@+id/rechercherBtn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="2dp"
-                android:contentDescription="@string/recherchebouton"
-                app:srcCompat="@drawable/search_24"
-                app:tint="@color/grey"
-                android:backgroundTint="@color/white"/>
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="2dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:id="@+id/assistanceBtn"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                android:text="@string/assistance"/>
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:layout_marginStart="2dp"
-                android:id="@+id/profilBtn"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                android:text="@string/profil"/>
-            <ImageButton
-                android:id="@+id/boutonPanier"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:contentDescription="@string/ajouter_au_panier"
-                app:srcCompat="@drawable/cart_24"
-                app:tint="@color/grey"
-                android:backgroundTint="@color/white"/>
-        </LinearLayout>
-        <TextView
-            android:id="@+id/produits_desc_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bouton_bar"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:paddingHorizontal="20dp"
-            android:textColor="@color/white"
-            android:text=""/>
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/recherchebouton"
+            app:srcCompat="@drawable/search_24"
+            app:tint="@color/grey"
+            android:backgroundTint="@color/white"/>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/produits_desc_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nav"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/white"
+        android:text=""/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lightGrey"
+        android:elevation="2dp">
+
+        <ImageButton
+            android:id="@+id/assistanceBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:contentDescription="@string/assistance"
+            app:srcCompat="@drawable/question_24"
+            app:tint="@color/grey"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"/>
+
+
+        <ImageButton
+            android:id="@+id/profilBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:contentDescription="@string/profil"
+            app:srcCompat="@drawable/account_24"
+            app:tint="@color/grey"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"/>
+
+
+        <ImageButton
+            android:id="@+id/boutonPanier"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/ajouter_au_panier"
+            app:srcCompat="@drawable/cart_24"
+            app:tint="@color/grey"
+            android:backgroundTint="@color/white"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nav"
         android:orientation="horizontal"
-        android:paddingBottom="30dp"
+        android:paddingBottom="60dp"
         android:contentDescription="@string/produits">
 
         <LinearLayout

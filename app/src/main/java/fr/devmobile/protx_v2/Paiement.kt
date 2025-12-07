@@ -84,7 +84,8 @@ class Paiement : DialogFragment() {
 
 
         val cardnumberEditText = view.findViewById<EditText>(R.id.cardnumberEditText)
-        val dateEditText = view.findViewById<EditText>(R.id.dateEditText)
+        val moisEditText = view.findViewById<EditText>(R.id.moisEditText)
+        val anneeEditText = view.findViewById<EditText>(R.id.anneeEditText)
         val cvcEditText = view.findViewById<EditText>(R.id.cvcEditText)
         val nomEditText = view.findViewById<EditText>(R.id.nomEditText)
 
@@ -93,7 +94,8 @@ class Paiement : DialogFragment() {
         boutonConfirmer.setOnClickListener {
 
             val numeroCarte = cardnumberEditText.text.toString().trim()
-            val date = dateEditText.text.toString().trim()
+            val mois = moisEditText.text.toString().trim()
+            val annee = anneeEditText.text.toString().trim()
             val cvc = cvcEditText.text.toString().trim()
             val nomCarte = nomEditText.text.toString().trim()
 
@@ -104,10 +106,10 @@ class Paiement : DialogFragment() {
                 cvc.length < 3 -> Toast.makeText(requireContext(),
                 getString(R.string.cvc_invalide), Toast.LENGTH_SHORT).show()
 
-                date.isEmpty() || nomCarte.isEmpty() -> Toast.makeText(requireContext(),
+                mois.isEmpty() || annee.isEmpty() || nomCarte.isEmpty() -> Toast.makeText(requireContext(),
                     getString(R.string.remplir), Toast.LENGTH_SHORT).show()
 
-                dateValide(date) -> Toast.makeText(requireContext(),
+                dateValide(mois, annee) -> Toast.makeText(requireContext(),
                     getString(R.string.erreurDate), Toast.LENGTH_SHORT).show()
 
                 else ->{
@@ -153,17 +155,23 @@ class Paiement : DialogFragment() {
         return view
     }
 
-    fun dateValide(date: String): Boolean {
+    fun dateValide(mois: String, annee :String): Boolean {
 
-        if (!date.matches(Regex("^(0[1-9]|1[0-2])/[0-9]{2}$"))) {
-            return true // format invalide
+        if (!mois.matches(Regex("^(0[1-9]|1[0-2])$"))) {
+            return true // mois invalide
         }
-        val (mois, annee) = date.split("/").map { it.toInt() }
+
+        if (!annee.matches(Regex("^[0-9]{2}$"))) {
+            return true // année invalide
+        }
+
+        val moisInt = mois.toInt()
+        val anneeInt = annee.toInt()
 
         val cetteAnnee = Calendar.getInstance().get(Calendar.YEAR) % 100
         val ceMois = Calendar.getInstance().get(Calendar.MONTH)+1
 
-        return (       (cetteAnnee > annee)        ||        ( (annee == cetteAnnee) && (mois < ceMois) )   )
+        return (       (cetteAnnee > anneeInt)        ||        ( (anneeInt == cetteAnnee) && (moisInt < ceMois) )   )
     }
 
 

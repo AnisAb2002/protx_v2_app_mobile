@@ -122,7 +122,7 @@
     <string name="num_ro_de_carte">Numéro de carte</string>
     <string name="carte_invalide">Numéro de carte invalide</string>
     <string name="cvc_invalide">CVC invalide</string>
-    <string name="date">Date d\'expiration MM/AA</string>
+    <string name="date">Date d\'expiration</string>
     <string name="cvc">CVC</string>
     <string name="erreurDate">Date d\'expiration invalide</string>
     <string name="confirmation_achat">Merci pour votre achat !\nVotre commande a bien été enregistrée.</string>
@@ -130,4 +130,6 @@
     <string name="aucunAchat">Vous n’avez encore effectué aucun achat.</string>
     <string name="ouvrir_compte">Veuillez vous connecter à votre compte</string>
     <string name="verifierConnexion">Veuillez vérifier votre connexion Internet.</string>
+    <string name="mois">MM</string>
+    <string name="aa">AA</string>
 </resources>
