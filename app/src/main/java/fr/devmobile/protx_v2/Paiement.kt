@@ -31,11 +31,13 @@ class Paiement : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_paiement, container, false)
 
+        //retour
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
         boutonRetour.setOnClickListener {
             dismiss()
         }
 
+        //retour
         val boutonAnnuler = view.findViewById<Button>(R.id.boutonAnnuler)
         boutonAnnuler.setOnClickListener {
             dismiss()
@@ -44,7 +46,7 @@ class Paiement : DialogFragment() {
         val totalText = view.findViewById<TextView>(R.id.totalText)
 
 
-
+//connexion a base de donnée pour récupérer panier
         val db = BD.getDatabase(requireContext())
         val panierDao = db.panierDao()
         var produits :  List<PanierEntity>
@@ -58,6 +60,7 @@ class Paiement : DialogFragment() {
                     dismiss()
                 }
                 else{
+                    //on affiche les détails des produits dans panier
                     for (produitPanier in produits) {
                         val container: LinearLayout = requireView().findViewById(R.id.commandeContainer)
                         val produitLigne = ProduitCommandeLigneBinding.inflate(inflater, container, false)
@@ -82,7 +85,7 @@ class Paiement : DialogFragment() {
         }
 
 
-
+        //info carte
         val cardnumberEditText = view.findViewById<EditText>(R.id.cardnumberEditText)
         val moisEditText = view.findViewById<EditText>(R.id.moisEditText)
         val anneeEditText = view.findViewById<EditText>(R.id.anneeEditText)
@@ -99,7 +102,7 @@ class Paiement : DialogFragment() {
             val cvc = cvcEditText.text.toString().trim()
             val nomCarte = nomEditText.text.toString().trim()
 
-            when {
+            when {   //simulation de paiement
                 numeroCarte.length < 16 -> Toast.makeText(requireContext(),
                     getString(R.string.carte_invalide), Toast.LENGTH_SHORT).show()
 
@@ -156,7 +159,7 @@ class Paiement : DialogFragment() {
     }
 
     fun dateValide(mois: String, annee :String): Boolean {
-
+        //vérifier la date d'expiration de la carte (mois et annee)
         if (!mois.matches(Regex("^(0[1-9]|1[0-2])$"))) {
             return true // mois invalide
         }

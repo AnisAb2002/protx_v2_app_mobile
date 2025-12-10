@@ -22,37 +22,45 @@ class Accueil : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        //bouton rechercher
         binding.rechercherBtn.setOnClickListener {
             val intent = Intent(this, Recherche::class.java)
             startActivity(intent)
         }
 
+        //bouton pour accéder à l'assistance
         binding.assistanceBtn.setOnClickListener {
             val intent = Intent(this, Assistance::class.java)
             startActivity(intent)
         }
+
+        //bouton pour accéder au profil
         binding.profilBtn.setOnClickListener {
             val intent = Intent(this, Profil::class.java)
             startActivity(intent)
             finish()
         }
 
+        //bouton pour afficher le panier
         binding.boutonPanier.setOnClickListener {
             Panier().show(supportFragmentManager, "Panier")
         }
 
-
+        //récuperer les préférences partagé
         val sharedPref = getSharedPreferences("donnees_utilisateur", MODE_PRIVATE)
         val langue = sharedPref.getString("langue","fr")
 
+        //connexion bd
         val db = Firebase.firestore
         db.collection("produits").get()
         .addOnSuccessListener {
             produits ->
             if (produits.isEmpty){
+                //erreur aucun produit
                 binding.produitsDescText.text = getString(R.string.aucunProduitErreur)
             }
             else{
+                //on affiche tous les produits
                 for (produit in produits) {
                     val prod = produit.toObject(Produit::class.java)
                     afficherProduits(prod, langue.toString())
@@ -66,7 +74,7 @@ class Accueil : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun afficherProduits(produit: Produit, langue : String) {
-
+        //fonction qui affiche les produit
         val container: LinearLayout = binding.containerProduits
         val inflater = LayoutInflater.from(this)
 
@@ -86,6 +94,7 @@ class Accueil : AppCompatActivity() {
 
         itemBinding.imageProduit.setImageResource(imageId)
 
+        //bouton apérçu de de chaque produit
         itemBinding.btnApercu.setOnClickListener {
             val fragment = ApercuProduit()
             val bundle = Bundle().apply {
@@ -97,6 +106,7 @@ class Accueil : AppCompatActivity() {
                 putInt("image_src", imageId)
                 putString("portion",produit.portion)
 
+                //savoir quel langue
                 if (langue == "fr"){
                     putString("composition",produit.compo_fr)
                     putString("description", produit.desc_fr)

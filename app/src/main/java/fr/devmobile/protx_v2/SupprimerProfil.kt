@@ -22,15 +22,18 @@ class SupprimerProfil : DialogFragment() {
 
         val mdpEditText = view.findViewById<EditText>(R.id.mdpEditText)
 
+        //bouton quiter
         val boutonRetour = view.findViewById<ImageButton>(R.id.retourBouton)
         boutonRetour.setOnClickListener {
             dismiss()
         }
+        //bouton quiter
         val boutonAnnuler = view.findViewById<Button>(R.id.boutonAnnuler)
         boutonAnnuler.setOnClickListener {
             dismiss()
         }
 
+        //bouton confirmer suupprimmer
         val boutonConfirmer = view.findViewById<Button>(R.id.boutonConfirmer)
         boutonConfirmer.setOnClickListener {
             val mdp = mdpEditText.text.toString()

@@ -18,6 +18,7 @@ class ModifierMotdepasse : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_modifier_motdepasse, container, false)
 
+        //champs
         val ancienMdpEditText = view.findViewById<EditText>(R.id.ancienMdpEditText)
         val mdpEditText = view.findViewById<EditText>(R.id.mdpEditText)
         val mdpConfirmationEditText = view.findViewById<EditText>(R.id.mdpConfirmationEditText)
@@ -34,6 +35,7 @@ class ModifierMotdepasse : DialogFragment() {
             val nvMdp = mdpEditText.text.toString()
             val mdpConfirmation = mdpConfirmationEditText.text.toString()
 
+            //vérification
             if (ancienMdp.isEmpty() ||nvMdp.isEmpty() || mdpConfirmation.isEmpty()){
                 Toast.makeText(requireContext(), getString(R.string.remplir), Toast.LENGTH_SHORT).show()
             }
@@ -41,7 +43,7 @@ class ModifierMotdepasse : DialogFragment() {
                 Toast.makeText(requireContext(), getString(R.string.MdpConfirmation), Toast.LENGTH_SHORT).show()
             }
             else if (identifiant != null){
-
+                //verificatoin des données si elles sont corecte (auth)
                 db.collection("utilisateurs")
                     .whereEqualTo("identifiant", identifiant)
                     .whereEqualTo("motDePasse", hashMotDePasse(ancienMdp))
@@ -52,7 +54,7 @@ class ModifierMotdepasse : DialogFragment() {
                         }
                         else {
                             val utilisateur = result.documents.first().reference
-
+                            //mettre à jour le mdp
                             utilisateur.update("motDePasse",hashMotDePasse(nvMdp))
                                 .addOnSuccessListener {
                                     Toast.makeText(requireContext(), getString(R.string.miseajour_mot_de_passe), Toast.LENGTH_SHORT).show()
@@ -86,6 +88,7 @@ class ModifierMotdepasse : DialogFragment() {
 
 
     fun hashMotDePasse(mdp: String): String {
+        //hashage
         val bytes = MessageDigest.getInstance("SHA-256").digest(mdp.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
     }

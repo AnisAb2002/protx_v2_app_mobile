@@ -26,6 +26,7 @@ class Recherche : AppCompatActivity() {
             finish()
         }
 
+        //bouton rechercher
         binding.rechercheBouton.setOnClickListener {
             val rechercheEditText = binding.rechercheEditText.text.toString()
 
